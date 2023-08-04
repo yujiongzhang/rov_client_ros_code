@@ -1,0 +1,995 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1900</width>
+    <height>1000</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>ROV_Client_X</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <widget class="QPushButton" name="pushButton">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>140</y>
+      <width>89</width>
+      <height>25</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>PushButton</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>80</y>
+      <width>351</width>
+      <height>51</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>hello world</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_2">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>190</y>
+      <width>421</width>
+      <height>17</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>TextLabel</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_3">
+    <property name="geometry">
+     <rect>
+      <x>1300</x>
+      <y>10</y>
+      <width>280</width>
+      <height>210</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(0, 0, 0);</string>
+    </property>
+    <property name="text">
+     <string>TextLabel</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pushButton_2">
+    <property name="geometry">
+     <rect>
+      <x>160</x>
+      <y>140</y>
+      <width>271</width>
+      <height>25</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>PushButton_2</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="joy_pushButton">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>220</y>
+      <width>89</width>
+      <height>25</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>joy</string>
+    </property>
+   </widget>
+   <widget class="QWidget" name="widget" native="true">
+    <property name="geometry">
+     <rect>
+      <x>510</x>
+      <y>120</y>
+      <width>241</width>
+      <height>44</height>
+     </rect>
+    </property>
+    <layout class="QHBoxLayout" name="horizontalLayout">
+     <item>
+      <widget class="QPushButton" name="led_on_pushButton">
+       <property name="styleSheet">
+        <string notr="true">QPushButton{
+	font: 10pt &quot;微软雅黑&quot;;
+    color: #2f3640;
+    background-color: #f5f690;
+    border-color: #2f3640;
+    border-radius: 10px;
+    border-style: solid;
+    border-width: 2px;
+    padding: 1px;
+}
+
+QPushButton::hover{	
+    color: #FFFFFF;
+    background-color: #718093;
+    border-color: #2f3640;
+}
+
+QPushButton::pressed,QPushButton::checked{
+    color: #FFFFFF;
+    background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, stop:0 #273c75, stop:1 #487eb0);
+}
+
+QPushButton::disabled{
+    color: #FFFFFF;
+    background-color: #dcdde1;
+    border-color: #dcdde1;
+}</string>
+       </property>
+       <property name="text">
+        <string>开灯</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="led_off_pushButton">
+       <property name="styleSheet">
+        <string notr="true">QPushButton{
+	font: 10pt &quot;微软雅黑&quot;;
+    color: #2f3640;
+    background-color: #f5f690;
+    border-color: #2f3640;
+    border-radius: 10px;
+    border-style: solid;
+    border-width: 2px;
+    padding: 1px;
+}
+
+QPushButton::hover{	
+    color: #FFFFFF;
+    background-color: #718093;
+    border-color: #2f3640;
+}
+
+QPushButton::pressed,QPushButton::checked{
+    color: #FFFFFF;
+    background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, stop:0 #273c75, stop:1 #487eb0);
+}
+
+QPushButton::disabled{
+    color: #FFFFFF;
+    background-color: #dcdde1;
+    border-color: #dcdde1;
+}</string>
+       </property>
+       <property name="text">
+        <string>关灯</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </widget>
+   <widget class="QWidget" name="widget_2" native="true">
+    <property name="geometry">
+     <rect>
+      <x>510</x>
+      <y>190</y>
+      <width>231</width>
+      <height>44</height>
+     </rect>
+    </property>
+    <layout class="QHBoxLayout" name="horizontalLayout_2">
+     <item>
+      <widget class="QPushButton" name="camera_on_pushButton">
+       <property name="styleSheet">
+        <string notr="true">QPushButton{
+	font: 10pt &quot;微软雅黑&quot;;
+    color: #2f3640;
+    background-color: #f5f690;
+    border-color: #2f3640;
+    border-radius: 10px;
+    border-style: solid;
+    border-width: 2px;
+    padding: 1px;
+}
+
+QPushButton::hover{	
+    color: #FFFFFF;
+    background-color: #718093;
+    border-color: #2f3640;
+}
+
+QPushButton::pressed,QPushButton::checked{
+    color: #FFFFFF;
+    background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, stop:0 #273c75, stop:1 #487eb0);
+}
+
+QPushButton::disabled{
+    color: #FFFFFF;
+    background-color: #dcdde1;
+    border-color: #dcdde1;
+}</string>
+       </property>
+       <property name="text">
+        <string>打开相机</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="camera_off_pushButton">
+       <property name="styleSheet">
+        <string notr="true">QPushButton{
+	font: 10pt &quot;微软雅黑&quot;;
+    color: #2f3640;
+    background-color: #f5f690;
+    border-color: #2f3640;
+    border-radius: 10px;
+    border-style: solid;
+    border-width: 2px;
+    padding: 1px;
+}
+
+QPushButton::hover{	
+    color: #FFFFFF;
+    background-color: #718093;
+    border-color: #2f3640;
+}
+
+QPushButton::pressed,QPushButton::checked{
+    color: #FFFFFF;
+    background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, stop:0 #273c75, stop:1 #487eb0);
+}
+
+QPushButton::disabled{
+    color: #FFFFFF;
+    background-color: #dcdde1;
+    border-color: #dcdde1;
+}</string>
+       </property>
+       <property name="text">
+        <string>关闭相机</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </widget>
+   <widget class="QGroupBox" name="groupBox">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>450</y>
+      <width>300</width>
+      <height>121</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <weight>75</weight>
+      <bold>true</bold>
+     </font>
+    </property>
+    <property name="title">
+     <string>ROV STATUS</string>
+    </property>
+    <layout class="QGridLayout" name="gridLayout_2">
+     <item row="1" column="3">
+      <widget class="QLabel" name="height_label">
+       <property name="font">
+        <font>
+         <weight>75</weight>
+         <bold>true</bold>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">color: rgb(229, 165, 10);</string>
+       </property>
+       <property name="text">
+        <string>0</string>
+       </property>
+      </widget>
+     </item>
+     <item row="0" column="0">
+      <widget class="QLabel" name="label_4">
+       <property name="text">
+        <string>depth:</string>
+       </property>
+      </widget>
+     </item>
+     <item row="5" column="4">
+      <widget class="QLabel" name="label_14">
+       <property name="text">
+        <string>rol:</string>
+       </property>
+      </widget>
+     </item>
+     <item row="0" column="4">
+      <widget class="QLabel" name="label_12">
+       <property name="text">
+        <string>yaw:</string>
+       </property>
+      </widget>
+     </item>
+     <item row="1" column="4">
+      <widget class="QLabel" name="label_13">
+       <property name="text">
+        <string>pitch:</string>
+       </property>
+      </widget>
+     </item>
+     <item row="0" column="3">
+      <widget class="QLabel" name="depth_label">
+       <property name="font">
+        <font>
+         <weight>75</weight>
+         <bold>true</bold>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">color: rgb(229, 165, 10);</string>
+       </property>
+       <property name="text">
+        <string>0</string>
+       </property>
+      </widget>
+     </item>
+     <item row="5" column="5">
+      <widget class="QLabel" name="rol_label">
+       <property name="font">
+        <font>
+         <weight>75</weight>
+         <bold>true</bold>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">color: rgb(229, 165, 10);</string>
+       </property>
+       <property name="text">
+        <string>0</string>
+       </property>
+      </widget>
+     </item>
+     <item row="1" column="0">
+      <widget class="QLabel" name="label_6">
+       <property name="text">
+        <string>height:</string>
+       </property>
+      </widget>
+     </item>
+     <item row="5" column="0">
+      <widget class="QLabel" name="label_15">
+       <property name="text">
+        <string>mode:</string>
+       </property>
+      </widget>
+     </item>
+     <item row="0" column="5">
+      <widget class="QLabel" name="yaw_label">
+       <property name="font">
+        <font>
+         <weight>75</weight>
+         <bold>true</bold>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">color: rgb(229, 165, 10);</string>
+       </property>
+       <property name="text">
+        <string>0</string>
+       </property>
+      </widget>
+     </item>
+     <item row="1" column="5">
+      <widget class="QLabel" name="pitch_label">
+       <property name="font">
+        <font>
+         <weight>75</weight>
+         <bold>true</bold>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">color: rgb(229, 165, 10);</string>
+       </property>
+       <property name="text">
+        <string>0</string>
+       </property>
+      </widget>
+     </item>
+     <item row="5" column="3">
+      <widget class="QLabel" name="mode_label">
+       <property name="font">
+        <font>
+         <weight>75</weight>
+         <bold>true</bold>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">color: rgb(229, 165, 10);</string>
+       </property>
+       <property name="text">
+        <string>0</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </widget>
+   <widget class="QGroupBox" name="groupBox_2">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>590</y>
+      <width>301</width>
+      <height>130</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <weight>75</weight>
+      <bold>true</bold>
+     </font>
+    </property>
+    <property name="title">
+     <string>STATUS IN CABIN</string>
+    </property>
+    <layout class="QGridLayout" name="gridLayout">
+     <item row="0" column="0">
+      <widget class="QLabel" name="label_7">
+       <property name="text">
+        <string>temperature:</string>
+       </property>
+      </widget>
+     </item>
+     <item row="0" column="1">
+      <widget class="QLabel" name="temperature_label">
+       <property name="font">
+        <font>
+         <weight>75</weight>
+         <bold>true</bold>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">color: rgb(229, 165, 10);</string>
+       </property>
+       <property name="text">
+        <string>0</string>
+       </property>
+      </widget>
+     </item>
+     <item row="1" column="0">
+      <widget class="QLabel" name="label_8">
+       <property name="text">
+        <string>humidity:</string>
+       </property>
+      </widget>
+     </item>
+     <item row="1" column="1">
+      <widget class="QLabel" name="humidity_label">
+       <property name="font">
+        <font>
+         <weight>75</weight>
+         <bold>true</bold>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">color: rgb(229, 165, 10);</string>
+       </property>
+       <property name="text">
+        <string>0</string>
+       </property>
+      </widget>
+     </item>
+     <item row="2" column="0">
+      <widget class="QLabel" name="label_9">
+       <property name="text">
+        <string>cpu temperature:</string>
+       </property>
+      </widget>
+     </item>
+     <item row="2" column="1">
+      <widget class="QLabel" name="cpu_temperature_label">
+       <property name="font">
+        <font>
+         <weight>75</weight>
+         <bold>true</bold>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">color: rgb(229, 165, 10);</string>
+       </property>
+       <property name="text">
+        <string>0</string>
+       </property>
+      </widget>
+     </item>
+     <item row="3" column="0">
+      <widget class="QLabel" name="label_10">
+       <property name="text">
+        <string>water level:</string>
+       </property>
+      </widget>
+     </item>
+     <item row="3" column="1">
+      <widget class="QLabel" name="water_level_label">
+       <property name="font">
+        <font>
+         <weight>75</weight>
+         <bold>true</bold>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">color: rgb(229, 165, 10);</string>
+       </property>
+       <property name="text">
+        <string>0</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </widget>
+   <widget class="QWidget" name="widget_4" native="true">
+    <property name="geometry">
+     <rect>
+      <x>510</x>
+      <y>20</y>
+      <width>481</width>
+      <height>91</height>
+     </rect>
+    </property>
+    <layout class="QGridLayout" name="gridLayout_4">
+     <item row="0" column="0">
+      <widget class="QLabel" name="label_11">
+       <property name="text">
+        <string>servo</string>
+       </property>
+      </widget>
+     </item>
+     <item row="0" column="1">
+      <widget class="QLabel" name="servo_angle_label">
+       <property name="styleSheet">
+        <string notr="true">color: rgb(255, 170, 0);</string>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+      </widget>
+     </item>
+     <item row="0" column="2">
+      <widget class="QSlider" name="servo_angle_slider">
+       <property name="styleSheet">
+        <string notr="true">QSlider::groove:horizontal{ 
+         height: 12px; 
+         left: 0px; 
+         right: 0px; 
+         border:0px;    
+         border-radius:6px;
+background:rgba(0,0,0,60);
+
+  } 
+
+QSlider::handle:horizontal{ 
+        width:  20px; 
+         height: 50px;
+		margin-top:0px;
+		margin-bottom:0px;
+	background-color: rgb(255, 150, 0);
+
+
+ } 
+
+ QSlider::sub-page:horizontal{
+	background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(255, 255, 0, 255), stop:1 rgba(255, 170, 0, 255));
+
+border-radius:6px;    
+}</string>
+       </property>
+       <property name="minimum">
+        <number>-90</number>
+       </property>
+       <property name="singleStep">
+        <number>90</number>
+       </property>
+       <property name="value">
+        <number>0</number>
+       </property>
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
+       </property>
+      </widget>
+     </item>
+     <item row="1" column="0">
+      <widget class="QLabel" name="label_5">
+       <property name="text">
+        <string> 亮度  </string>
+       </property>
+      </widget>
+     </item>
+     <item row="1" column="1">
+      <widget class="QLabel" name="brightness_label">
+       <property name="styleSheet">
+        <string notr="true">color: rgb(255, 170, 0);</string>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+      </widget>
+     </item>
+     <item row="1" column="2">
+      <widget class="QSlider" name="brightness_slider">
+       <property name="styleSheet">
+        <string notr="true">QSlider::groove:horizontal{ 
+         height: 12px; 
+         left: 0px; 
+         right: 0px; 
+         border:0px;    
+         border-radius:6px;
+background:rgba(0,0,0,60);
+
+  } 
+
+QSlider::handle:horizontal{ 
+        width:  20px; 
+         height: 50px;
+		margin-top:0px;
+		margin-bottom:0px;
+	background-color: rgb(255, 150, 0);
+
+
+ } 
+
+ QSlider::sub-page:horizontal{
+	background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(255, 255, 0, 255), stop:1 rgba(255, 170, 0, 255));
+
+border-radius:6px;    
+}</string>
+       </property>
+       <property name="value">
+        <number>50</number>
+       </property>
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </widget>
+   <widget class="QLabel" name="tubiao_label">
+    <property name="geometry">
+     <rect>
+      <x>1590</x>
+      <y>10</y>
+      <width>280</width>
+      <height>210</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true"/>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="camera_qweight" name="camera1" native="true">
+    <property name="geometry">
+     <rect>
+      <x>560</x>
+      <y>230</y>
+      <width>1280</width>
+      <height>720</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(97, 53, 131);</string>
+    </property>
+   </widget>
+   <widget class="QGroupBox" name="groupBox_3">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>740</y>
+      <width>300</width>
+      <height>181</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <weight>75</weight>
+      <bold>true</bold>
+     </font>
+    </property>
+    <property name="title">
+     <string>ROV CONTROL</string>
+    </property>
+    <layout class="QGridLayout" name="gridLayout_3">
+     <item row="0" column="0">
+      <widget class="QPushButton" name="pushButton_3">
+       <property name="font">
+        <font>
+         <pointsize>11</pointsize>
+         <weight>75</weight>
+         <italic>false</italic>
+         <bold>true</bold>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QPushButton{
+	font: 11pt ;
+	font-weight: bold;
+    color: #2f3640;
+    background-color: #f5f690;
+    border-color: #2f3640;
+    border-radius: 2px;
+    border-style: solid;
+    border-width: 2px;
+    padding: 3px;
+}
+
+QPushButton::pressed,QPushButton::checked{
+    color: #FFFFFF;
+    background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, stop:0 #273c75, stop:1 #487eb0);
+}
+
+QPushButton::disabled{
+    color: #FFFFFF;
+    background-color: #dcdde1;
+    border-color: #dcdde1;
+}</string>
+       </property>
+       <property name="text">
+        <string>Depth Hold</string>
+       </property>
+      </widget>
+     </item>
+     <item row="0" column="1">
+      <widget class="QPushButton" name="pushButton_4">
+       <property name="styleSheet">
+        <string notr="true">QPushButton{
+	font: 11pt ;
+	font-weight: bold;
+    color: #2f3640;
+    background-color: #f5f690;
+    border-color: #2f3640;
+    border-radius: 2px;
+    border-style: solid;
+    border-width: 2px;
+    padding: 3px;
+}
+
+QPushButton::pressed,QPushButton::checked{
+    color: #FFFFFF;
+    background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, stop:0 #273c75, stop:1 #487eb0);
+}
+
+QPushButton::disabled{
+    color: #FFFFFF;
+    background-color: #dcdde1;
+    border-color: #dcdde1;
+}</string>
+       </property>
+       <property name="text">
+        <string>Depth OFF</string>
+       </property>
+      </widget>
+     </item>
+     <item row="1" column="0">
+      <widget class="QPushButton" name="pushButton_5">
+       <property name="styleSheet">
+        <string notr="true">QPushButton{
+	font: 11pt ;
+	font-weight: bold;
+    color: #2f3640;
+    background-color: #f5f690;
+    border-color: #2f3640;
+    border-radius: 2px;
+    border-style: solid;
+    border-width: 2px;
+    padding: 3px;
+}
+
+QPushButton::pressed,QPushButton::checked{
+    color: #FFFFFF;
+    background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, stop:0 #273c75, stop:1 #487eb0);
+}
+
+QPushButton::disabled{
+    color: #FFFFFF;
+    background-color: #dcdde1;
+    border-color: #dcdde1;
+}</string>
+       </property>
+       <property name="text">
+        <string>Attitude Hold</string>
+       </property>
+      </widget>
+     </item>
+     <item row="1" column="1">
+      <widget class="QPushButton" name="pushButton_6">
+       <property name="styleSheet">
+        <string notr="true">QPushButton{
+	font: 11pt ;
+	font-weight: bold;
+    color: #2f3640;
+    background-color: #f5f690;
+    border-color: #2f3640;
+    border-radius: 2px;
+    border-style: solid;
+    border-width: 2px;
+    padding: 3px;
+}
+
+QPushButton::pressed,QPushButton::checked{
+    color: #FFFFFF;
+    background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, stop:0 #273c75, stop:1 #487eb0);
+}
+
+QPushButton::disabled{
+    color: #FFFFFF;
+    background-color: #dcdde1;
+    border-color: #dcdde1;
+}
+</string>
+       </property>
+       <property name="text">
+        <string>Attitude OFF</string>
+       </property>
+      </widget>
+     </item>
+     <item row="2" column="0">
+      <widget class="QPushButton" name="pushButton_7">
+       <property name="text">
+        <string>PushButton</string>
+       </property>
+      </widget>
+     </item>
+     <item row="2" column="1">
+      <widget class="QPushButton" name="pushButton_8">
+       <property name="text">
+        <string>PushButton</string>
+       </property>
+      </widget>
+     </item>
+     <item row="3" column="0">
+      <widget class="QPushButton" name="pushButton_9">
+       <property name="text">
+        <string>PushButton</string>
+       </property>
+      </widget>
+     </item>
+     <item row="3" column="1">
+      <widget class="QPushButton" name="pushButton_10">
+       <property name="text">
+        <string>PushButton</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </widget>
+   <widget class="camera_qweight" name="camera2" native="true">
+    <property name="geometry">
+     <rect>
+      <x>1000</x>
+      <y>10</y>
+      <width>280</width>
+      <height>210</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(97, 53, 131);</string>
+    </property>
+   </widget>
+   <widget class="QWidget" name="widget_3" native="true">
+    <property name="geometry">
+     <rect>
+      <x>760</x>
+      <y>190</y>
+      <width>231</width>
+      <height>44</height>
+     </rect>
+    </property>
+    <layout class="QHBoxLayout" name="horizontalLayout_3">
+     <item>
+      <widget class="QPushButton" name="camera2_on_pushButton">
+       <property name="styleSheet">
+        <string notr="true">QPushButton{
+	font: 10pt &quot;微软雅黑&quot;;
+    color: #2f3640;
+    background-color: #f5f690;
+    border-color: #2f3640;
+    border-radius: 10px;
+    border-style: solid;
+    border-width: 2px;
+    padding: 1px;
+}
+
+QPushButton::hover{	
+    color: #FFFFFF;
+    background-color: #718093;
+    border-color: #2f3640;
+}
+
+QPushButton::pressed,QPushButton::checked{
+    color: #FFFFFF;
+    background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, stop:0 #273c75, stop:1 #487eb0);
+}
+
+QPushButton::disabled{
+    color: #FFFFFF;
+    background-color: #dcdde1;
+    border-color: #dcdde1;
+}</string>
+       </property>
+       <property name="text">
+        <string>打开相机2</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="camera2_off_pushButton">
+       <property name="styleSheet">
+        <string notr="true">QPushButton{
+	font: 10pt &quot;微软雅黑&quot;;
+    color: #2f3640;
+    background-color: #f5f690;
+    border-color: #2f3640;
+    border-radius: 10px;
+    border-style: solid;
+    border-width: 2px;
+    padding: 1px;
+}
+
+QPushButton::hover{	
+    color: #FFFFFF;
+    background-color: #718093;
+    border-color: #2f3640;
+}
+
+QPushButton::pressed,QPushButton::checked{
+    color: #FFFFFF;
+    background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, stop:0 #273c75, stop:1 #487eb0);
+}
+
+QPushButton::disabled{
+    color: #FFFFFF;
+    background-color: #dcdde1;
+    border-color: #dcdde1;
+}</string>
+       </property>
+       <property name="text">
+        <string>关闭相机2</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </widget>
+  </widget>
+  <widget class="QMenuBar" name="menubar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>1900</width>
+     <height>22</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QStatusBar" name="statusbar"/>
+ </widget>
+ <customwidgets>
+  <customwidget>
+   <class>camera_qweight</class>
+   <extends>QWidget</extends>
+   <header location="global">camera_qweight.h</header>
+   <container>1</container>
+  </customwidget>
+ </customwidgets>
+ <resources/>
+ <connections/>
+</ui>
