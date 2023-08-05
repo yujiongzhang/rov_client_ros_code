@@ -1,0 +1,34 @@
+// generated from rosidl_adapter/resource/msg.idl.em
+// with input from rov_interfaces/msg/Thruster.msg
+// generated code does not contain a copyright notice
+
+
+module rov_interfaces {
+  module msg {
+    struct Thruster {
+      @verbatim (language="comment", text=
+        "电机转速")
+      uint16 speed_rpm;
+
+      @verbatim (language="comment", text=
+        "母线电压")
+      float given_voltage;
+
+      @verbatim (language="comment", text=
+        "母线电流")
+      float given_current;
+
+      @verbatim (language="comment", text=
+        "控制器温度")
+      uint8 controller_temperate;
+
+      @verbatim (language="comment", text=
+        "电机温度")
+      uint8 motor_temperate;
+
+      @verbatim (language="comment", text=
+        "电机状态")
+      uint8 motor_status;
+    };
+  };
+};

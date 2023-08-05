@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1900</width>
+    <width>1600</width>
     <height>1000</height>
    </rect>
   </property>
@@ -14,49 +14,10 @@
    <string>ROV_Client_X</string>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <widget class="QPushButton" name="pushButton">
-    <property name="geometry">
-     <rect>
-      <x>20</x>
-      <y>140</y>
-      <width>89</width>
-      <height>25</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>PushButton</string>
-    </property>
-   </widget>
-   <widget class="QLabel" name="label">
-    <property name="geometry">
-     <rect>
-      <x>20</x>
-      <y>80</y>
-      <width>351</width>
-      <height>51</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>hello world</string>
-    </property>
-   </widget>
-   <widget class="QLabel" name="label_2">
-    <property name="geometry">
-     <rect>
-      <x>20</x>
-      <y>190</y>
-      <width>421</width>
-      <height>17</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>TextLabel</string>
-    </property>
-   </widget>
    <widget class="QLabel" name="label_3">
     <property name="geometry">
      <rect>
-      <x>1300</x>
+      <x>1010</x>
       <y>10</y>
       <width>280</width>
       <height>210</height>
@@ -69,38 +30,12 @@
      <string>TextLabel</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushButton_2">
-    <property name="geometry">
-     <rect>
-      <x>160</x>
-      <y>140</y>
-      <width>271</width>
-      <height>25</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>PushButton_2</string>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="joy_pushButton">
-    <property name="geometry">
-     <rect>
-      <x>20</x>
-      <y>220</y>
-      <width>89</width>
-      <height>25</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>joy</string>
-    </property>
-   </widget>
    <widget class="QWidget" name="widget" native="true">
     <property name="geometry">
      <rect>
-      <x>510</x>
+      <x>290</x>
       <y>120</y>
-      <width>241</width>
+      <width>211</width>
       <height>44</height>
      </rect>
     </property>
@@ -182,9 +117,9 @@ QPushButton::disabled{
    <widget class="QWidget" name="widget_2" native="true">
     <property name="geometry">
      <rect>
-      <x>510</x>
-      <y>190</y>
-      <width>231</width>
+      <x>290</x>
+      <y>170</y>
+      <width>211</width>
       <height>44</height>
      </rect>
     </property>
@@ -268,7 +203,7 @@ QPushButton::disabled{
      <rect>
       <x>10</x>
       <y>450</y>
-      <width>300</width>
+      <width>281</width>
       <height>121</height>
      </rect>
     </property>
@@ -427,7 +362,7 @@ QPushButton::disabled{
      <rect>
       <x>10</x>
       <y>590</y>
-      <width>301</width>
+      <width>281</width>
       <height>130</height>
      </rect>
     </property>
@@ -538,9 +473,9 @@ QPushButton::disabled{
    <widget class="QWidget" name="widget_4" native="true">
     <property name="geometry">
      <rect>
-      <x>510</x>
-      <y>20</y>
-      <width>481</width>
+      <x>290</x>
+      <y>10</y>
+      <width>421</width>
       <height>91</height>
      </rect>
     </property>
@@ -664,7 +599,7 @@ border-radius:6px;
    <widget class="QLabel" name="tubiao_label">
     <property name="geometry">
      <rect>
-      <x>1590</x>
+      <x>1300</x>
       <y>10</y>
       <width>280</width>
       <height>210</height>
@@ -680,8 +615,8 @@ border-radius:6px;
    <widget class="camera_qweight" name="camera1" native="true">
     <property name="geometry">
      <rect>
-      <x>560</x>
-      <y>230</y>
+      <x>300</x>
+      <y>240</y>
       <width>1280</width>
       <height>720</height>
      </rect>
@@ -694,9 +629,9 @@ border-radius:6px;
     <property name="geometry">
      <rect>
       <x>10</x>
-      <y>740</y>
-      <width>300</width>
-      <height>181</height>
+      <y>730</y>
+      <width>281</width>
+      <height>221</height>
      </rect>
     </property>
     <property name="font">
@@ -708,8 +643,39 @@ border-radius:6px;
     <property name="title">
      <string>ROV CONTROL</string>
     </property>
-    <layout class="QGridLayout" name="gridLayout_3">
-     <item row="0" column="0">
+    <layout class="QGridLayout" name="gridLayout_3" rowstretch="1,1,1,0" columnstretch="1,1" rowminimumheight="1,1,1,0" columnminimumwidth="1,1">
+     <item row="1" column="1">
+      <widget class="QPushButton" name="pushButton_4">
+       <property name="styleSheet">
+        <string notr="true">QPushButton{
+	font: 11pt ;
+	font-weight: bold;
+    color: #2f3640;
+    background-color: #f5f690;
+    border-color: #2f3640;
+    border-radius: 2px;
+    border-style: solid;
+    border-width: 2px;
+    padding: 3px;
+}
+
+QPushButton::pressed,QPushButton::checked{
+    color: #FFFFFF;
+    background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, stop:0 #273c75, stop:1 #487eb0);
+}
+
+QPushButton::disabled{
+    color: #FFFFFF;
+    background-color: #dcdde1;
+    border-color: #dcdde1;
+}</string>
+       </property>
+       <property name="text">
+        <string>Depth OFF</string>
+       </property>
+      </widget>
+     </item>
+     <item row="1" column="0">
       <widget class="QPushButton" name="pushButton_3">
        <property name="font">
         <font>
@@ -748,69 +714,7 @@ QPushButton::disabled{
        </property>
       </widget>
      </item>
-     <item row="0" column="1">
-      <widget class="QPushButton" name="pushButton_4">
-       <property name="styleSheet">
-        <string notr="true">QPushButton{
-	font: 11pt ;
-	font-weight: bold;
-    color: #2f3640;
-    background-color: #f5f690;
-    border-color: #2f3640;
-    border-radius: 2px;
-    border-style: solid;
-    border-width: 2px;
-    padding: 3px;
-}
-
-QPushButton::pressed,QPushButton::checked{
-    color: #FFFFFF;
-    background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, stop:0 #273c75, stop:1 #487eb0);
-}
-
-QPushButton::disabled{
-    color: #FFFFFF;
-    background-color: #dcdde1;
-    border-color: #dcdde1;
-}</string>
-       </property>
-       <property name="text">
-        <string>Depth OFF</string>
-       </property>
-      </widget>
-     </item>
-     <item row="1" column="0">
-      <widget class="QPushButton" name="pushButton_5">
-       <property name="styleSheet">
-        <string notr="true">QPushButton{
-	font: 11pt ;
-	font-weight: bold;
-    color: #2f3640;
-    background-color: #f5f690;
-    border-color: #2f3640;
-    border-radius: 2px;
-    border-style: solid;
-    border-width: 2px;
-    padding: 3px;
-}
-
-QPushButton::pressed,QPushButton::checked{
-    color: #FFFFFF;
-    background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, stop:0 #273c75, stop:1 #487eb0);
-}
-
-QPushButton::disabled{
-    color: #FFFFFF;
-    background-color: #dcdde1;
-    border-color: #dcdde1;
-}</string>
-       </property>
-       <property name="text">
-        <string>Attitude Hold</string>
-       </property>
-      </widget>
-     </item>
-     <item row="1" column="1">
+     <item row="3" column="1">
       <widget class="QPushButton" name="pushButton_6">
        <property name="styleSheet">
         <string notr="true">QPushButton{
@@ -842,32 +746,137 @@ QPushButton::disabled{
        </property>
       </widget>
      </item>
-     <item row="2" column="0">
-      <widget class="QPushButton" name="pushButton_7">
-       <property name="text">
-        <string>PushButton</string>
-       </property>
-      </widget>
-     </item>
-     <item row="2" column="1">
-      <widget class="QPushButton" name="pushButton_8">
-       <property name="text">
-        <string>PushButton</string>
-       </property>
-      </widget>
-     </item>
      <item row="3" column="0">
-      <widget class="QPushButton" name="pushButton_9">
+      <widget class="QPushButton" name="pushButton_5">
+       <property name="styleSheet">
+        <string notr="true">QPushButton{
+	font: 11pt ;
+	font-weight: bold;
+    color: #2f3640;
+    background-color: #f5f690;
+    border-color: #2f3640;
+    border-radius: 2px;
+    border-style: solid;
+    border-width: 2px;
+    padding: 3px;
+}
+
+QPushButton::pressed,QPushButton::checked{
+    color: #FFFFFF;
+    background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, stop:0 #273c75, stop:1 #487eb0);
+}
+
+QPushButton::disabled{
+    color: #FFFFFF;
+    background-color: #dcdde1;
+    border-color: #dcdde1;
+}</string>
+       </property>
        <property name="text">
-        <string>PushButton</string>
+        <string>Attitude Hold</string>
        </property>
       </widget>
      </item>
-     <item row="3" column="1">
-      <widget class="QPushButton" name="pushButton_10">
-       <property name="text">
-        <string>PushButton</string>
-       </property>
+     <item row="0" column="0" colspan="2">
+      <widget class="QWidget" name="widget_5" native="true">
+       <layout class="QHBoxLayout" name="horizontalLayout_4" stretch="2,1,1">
+        <item>
+         <widget class="QLabel" name="label_20">
+          <property name="text">
+           <string>target dep</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLineEdit" name="lineEdit">
+          <property name="styleSheet">
+           <string notr="true">background-color: rgb(222, 221, 218);</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QPushButton" name="pushButton">
+          <property name="styleSheet">
+           <string notr="true">QPushButton{
+	font: 11pt ;
+	font-weight: bold;
+    color: #2f3640;
+    background-color: #f5f690;
+    border-color: #2f3640;
+    border-radius: 2px;
+    border-style: solid;
+    border-width: 2px;
+    padding: 3px;
+}
+
+QPushButton::pressed,QPushButton::checked{
+    color: #FFFFFF;
+    background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, stop:0 #273c75, stop:1 #487eb0);
+}
+
+QPushButton::disabled{
+    color: #FFFFFF;
+    background-color: #dcdde1;
+    border-color: #dcdde1;
+}</string>
+          </property>
+          <property name="text">
+           <string>SET</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+     </item>
+     <item row="2" column="0" colspan="2">
+      <widget class="QWidget" name="widget_6" native="true">
+       <layout class="QHBoxLayout" name="horizontalLayout_5" stretch="2,1,1">
+        <item>
+         <widget class="QLabel" name="label_21">
+          <property name="text">
+           <string>target att</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLineEdit" name="lineEdit_2">
+          <property name="styleSheet">
+           <string notr="true">background-color: rgb(222, 221, 218);</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QPushButton" name="pushButton_2">
+          <property name="styleSheet">
+           <string notr="true">QPushButton{
+	font: 11pt ;
+	font-weight: bold;
+    color: #2f3640;
+    background-color: #f5f690;
+    border-color: #2f3640;
+    border-radius: 2px;
+    border-style: solid;
+    border-width: 2px;
+    padding: 3px;
+}
+
+QPushButton::pressed,QPushButton::checked{
+    color: #FFFFFF;
+    background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, stop:0 #273c75, stop:1 #487eb0);
+}
+
+QPushButton::disabled{
+    color: #FFFFFF;
+    background-color: #dcdde1;
+    border-color: #dcdde1;
+}</string>
+          </property>
+          <property name="text">
+           <string>SET</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
       </widget>
      </item>
     </layout>
@@ -875,7 +884,7 @@ QPushButton::disabled{
    <widget class="camera_qweight" name="camera2" native="true">
     <property name="geometry">
      <rect>
-      <x>1000</x>
+      <x>720</x>
       <y>10</y>
       <width>280</width>
       <height>210</height>
@@ -888,9 +897,9 @@ QPushButton::disabled{
    <widget class="QWidget" name="widget_3" native="true">
     <property name="geometry">
      <rect>
-      <x>760</x>
-      <y>190</y>
-      <width>231</width>
+      <x>510</x>
+      <y>170</y>
+      <width>201</width>
       <height>44</height>
      </rect>
     </property>
@@ -969,13 +978,218 @@ QPushButton::disabled{
      </item>
     </layout>
    </widget>
+   <widget class="QGroupBox" name="groupBox_4">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>300</y>
+      <width>281</width>
+      <height>141</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <weight>75</weight>
+      <bold>true</bold>
+     </font>
+    </property>
+    <property name="title">
+     <string>MOTOR STATUS</string>
+    </property>
+    <layout class="QGridLayout" name="gridLayout_5">
+     <item row="1" column="0">
+      <widget class="QLabel" name="label_2">
+       <property name="text">
+        <string>THR_LL</string>
+       </property>
+      </widget>
+     </item>
+     <item row="3" column="2">
+      <widget class="QLabel" name="label_19">
+       <property name="text">
+        <string>TRA_R</string>
+       </property>
+      </widget>
+     </item>
+     <item row="0" column="2">
+      <widget class="QLabel" name="label_16">
+       <property name="text">
+        <string>THR_UR</string>
+       </property>
+      </widget>
+     </item>
+     <item row="3" column="3">
+      <widget class="QLabel" name="tra_r_label">
+       <property name="font">
+        <font>
+         <weight>75</weight>
+         <bold>true</bold>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">color: rgb(229, 165, 10);</string>
+       </property>
+       <property name="text">
+        <string>0</string>
+       </property>
+      </widget>
+     </item>
+     <item row="0" column="3">
+      <widget class="QLabel" name="thr_ur_label">
+       <property name="font">
+        <font>
+         <weight>75</weight>
+         <bold>true</bold>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">color: rgb(229, 165, 10);</string>
+       </property>
+       <property name="text">
+        <string>0</string>
+       </property>
+      </widget>
+     </item>
+     <item row="1" column="2">
+      <widget class="QLabel" name="label_17">
+       <property name="text">
+        <string>THR_LR</string>
+       </property>
+      </widget>
+     </item>
+     <item row="0" column="1">
+      <widget class="QLabel" name="thr_ul_label">
+       <property name="font">
+        <font>
+         <weight>75</weight>
+         <bold>true</bold>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">color: rgb(229, 165, 10);</string>
+       </property>
+       <property name="text">
+        <string>0</string>
+       </property>
+      </widget>
+     </item>
+     <item row="1" column="3">
+      <widget class="QLabel" name="thr_lr_label">
+       <property name="font">
+        <font>
+         <weight>75</weight>
+         <bold>true</bold>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">color: rgb(229, 165, 10);</string>
+       </property>
+       <property name="text">
+        <string>0</string>
+       </property>
+      </widget>
+     </item>
+     <item row="3" column="0">
+      <widget class="QLabel" name="label_18">
+       <property name="text">
+        <string>TRA_L</string>
+       </property>
+      </widget>
+     </item>
+     <item row="3" column="1">
+      <widget class="QLabel" name="tra_l_label">
+       <property name="font">
+        <font>
+         <weight>75</weight>
+         <bold>true</bold>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">color: rgb(229, 165, 10);</string>
+       </property>
+       <property name="text">
+        <string>0</string>
+       </property>
+      </widget>
+     </item>
+     <item row="1" column="1">
+      <widget class="QLabel" name="thr_ll_label">
+       <property name="font">
+        <font>
+         <weight>75</weight>
+         <bold>true</bold>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">color: rgb(229, 165, 10);</string>
+       </property>
+       <property name="text">
+        <string>0</string>
+       </property>
+      </widget>
+     </item>
+     <item row="0" column="0">
+      <widget class="QLabel" name="label">
+       <property name="text">
+        <string>THR_UL</string>
+       </property>
+      </widget>
+     </item>
+     <item row="2" column="0">
+      <widget class="QLabel" name="label_26">
+       <property name="text">
+        <string>THR_L</string>
+       </property>
+      </widget>
+     </item>
+     <item row="2" column="1">
+      <widget class="QLabel" name="thr_l_label">
+       <property name="font">
+        <font>
+         <weight>75</weight>
+         <bold>true</bold>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">color: rgb(229, 165, 10);</string>
+       </property>
+       <property name="text">
+        <string>0</string>
+       </property>
+      </widget>
+     </item>
+     <item row="2" column="2">
+      <widget class="QLabel" name="label_28">
+       <property name="text">
+        <string>THR_R</string>
+       </property>
+      </widget>
+     </item>
+     <item row="2" column="3">
+      <widget class="QLabel" name="thr_r_label">
+       <property name="font">
+        <font>
+         <weight>75</weight>
+         <bold>true</bold>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">color: rgb(229, 165, 10);</string>
+       </property>
+       <property name="text">
+        <string>0</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>1900</width>
+     <width>1600</width>
      <height>22</height>
     </rect>
    </property>

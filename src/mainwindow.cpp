@@ -1,10 +1,13 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 
+
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
 {
+
+    qRegisterMetaType<CabinState>("CabinState");//跨线程的信号和槽的参数传递中,参数的类型是自定义的类型
     ui->setupUi(this);
 
     int argc=0;
@@ -15,7 +18,7 @@ MainWindow::MainWindow(QWidget *parent)
     joyNode = new joy_thread();
     statusReceiveNode = new status_receive_thread();
     
-
+    commNode -> start();
     joyNode->start();
     statusReceiveNode->start();
 
@@ -27,9 +30,10 @@ MainWindow::MainWindow(QWidget *parent)
 
     uiInit();
 
-
-    connect(commNode,SIGNAL(emitTopicData(QString)),this,SLOT(onRecvData(QString)));
     connect(statusReceiveNode->node->connectqt,&status_receive_node_connect_qt::s_depth,this,&MainWindow::update_depth);
+    connect(statusReceiveNode->node->connectqt,&status_receive_node_connect_qt::s_thrusters,this,&MainWindow::update_thrusters);
+    connect(statusReceiveNode->node->connectqt,&status_receive_node_connect_qt::s_tracks,this,&MainWindow::update_tracks);
+    connect(statusReceiveNode->node->connectqt,&status_receive_node_connect_qt::s_cabin_state,this,&MainWindow::update_cabin_state);
 
 
     // QImage img;
@@ -57,31 +61,38 @@ void MainWindow::uiInit()
     ui->camera2->set_camera_source("rtsp://192.168.0.88:554/1");
 }
 
-
-
-void MainWindow::onRecvData(QString msg){
-    ui->label_2->setText(msg);
+void MainWindow::update_thrusters(int *msg)
+{
+    ui->thr_ul_label->setText(QString::number(msg[0]));
+    ui->thr_ur_label->setText(QString::number(msg[1]));
+    ui->thr_ll_label->setText(QString::number(msg[2]));
+    ui->thr_lr_label->setText(QString::number(msg[3]));
+    ui->thr_l_label->setText(QString::number(msg[4]));
+    ui->thr_r_label->setText(QString::number(msg[5]));
 }
 
+void MainWindow::update_tracks(int *msg)
+{
+    ui->tra_l_label->setText(QString::number(msg[0]));
+    ui->tra_r_label->setText(QString::number(msg[1]));
+}
+
+void MainWindow::update_cabin_state(CabinState msg)
+{
+    ui->humidity_label->setText(QString::number(msg.cabin_humidity));
+    ui->temperature_label->setText(QString::number(msg.cabin_temperature));
+    ui->cpu_temperature_label->setText(QString::number(msg.cpu_temperature));
+    ui->water_level_label->setText(QString::number(msg.cabin_water_level));
+}
 
 void MainWindow::update_depth(int msg)
 {
-    qDebug()<<"update depth";
     ui->depth_label->setText(QString::number(msg));
 }
 
 
-void MainWindow::on_pushButton_clicked()
-{
-    commNode->start();
-    
-}
 
 
-void MainWindow::on_joy_pushButton_clicked()
-{
-    
-}
 
 void MainWindow::on_led_off_pushButton_clicked()
 {

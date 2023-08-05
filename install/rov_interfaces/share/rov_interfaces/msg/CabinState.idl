@@ -1,0 +1,26 @@
+// generated from rosidl_adapter/resource/msg.idl.em
+// with input from rov_interfaces/msg/CabinState.msg
+// generated code does not contain a copyright notice
+
+
+module rov_interfaces {
+  module msg {
+    struct CabinState {
+      @verbatim (language="comment", text=
+        "舱内温度")
+      float cabin_temperature;
+
+      @verbatim (language="comment", text=
+        "舱内湿度")
+      float cabin_humidity;
+
+      @verbatim (language="comment", text=
+        "舱内水位")
+      float cabin_water_level;
+
+      @verbatim (language="comment", text=
+        "CPU温度")
+      float cpu_temperature;
+    };
+  };
+};

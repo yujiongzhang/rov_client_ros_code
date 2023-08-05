@@ -1,0 +1,5 @@
+uint8 bright  #LED 亮度
+
+---
+
+string result   #反馈结果

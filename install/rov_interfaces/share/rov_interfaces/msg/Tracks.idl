@@ -1,0 +1,15 @@
+// generated from rosidl_adapter/resource/msg.idl.em
+// with input from rov_interfaces/msg/Tracks.msg
+// generated code does not contain a copyright notice
+
+
+module rov_interfaces {
+  module msg {
+    typedef int16 int16__2[2];
+    struct Tracks {
+      @verbatim (language="comment", text=
+        "左、右履带电机的速度反馈")
+      int16__2 track_speed;
+    };
+  };
+};

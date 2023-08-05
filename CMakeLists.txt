@@ -19,6 +19,9 @@ find_package(geometry_msgs REQUIRED)
 find_package(Boost 1.71.0 REQUIRED COMPONENTS thread)
 find_package(Qt5 COMPONENTS Widgets REQUIRED)
 find_package(OpenCV REQUIRED)
+
+find_package(rov_interfaces REQUIRED)
+
 # uncomment the following section in order to fill in
 # further dependencies manually.
 # find_package(<dependency> REQUIRED)
@@ -34,6 +37,7 @@ include_directories(
 	include/
 	${CMAKE_CURRENT_BINARY_DIR}
   ${OpenCV_INCLUDE_DIRS}
+  ${CMAKE_SOURCE_DIR}
 )
 add_executable(${PROJECT_NAME}
     ${PRO_SOURCE_DIR}
@@ -44,7 +48,7 @@ add_executable(${PROJECT_NAME}
     ${QT_MOC_HPP}
     ${QT_RESOUCE_HPP}
   )
-ament_target_dependencies(${PROJECT_NAME} rclcpp Boost std_msgs sensor_msgs geometry_msgs)
+ament_target_dependencies(${PROJECT_NAME} rclcpp Boost std_msgs sensor_msgs geometry_msgs rov_interfaces)
 target_link_libraries(${PROJECT_NAME} Qt5::Widgets ${OpenCV_LIBS})
 
 

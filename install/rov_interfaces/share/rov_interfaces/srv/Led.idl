@@ -1,0 +1,19 @@
+// generated from rosidl_adapter/resource/srv.idl.em
+// with input from rov_interfaces/srv/Led.srv
+// generated code does not contain a copyright notice
+
+
+module rov_interfaces {
+  module srv {
+    struct Led_Request {
+      @verbatim (language="comment", text=
+        "LED 亮度")
+      uint8 bright;
+    };
+    struct Led_Response {
+      @verbatim (language="comment", text=
+        "反馈结果")
+      string result;
+    };
+  };
+};

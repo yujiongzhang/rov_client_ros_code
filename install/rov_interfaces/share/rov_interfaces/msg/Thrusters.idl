@@ -1,0 +1,23 @@
+// generated from rosidl_adapter/resource/msg.idl.em
+// with input from rov_interfaces/msg/Thrusters.msg
+// generated code does not contain a copyright notice
+
+#include "rov_interfaces/msg/Thruster.idl"
+
+module rov_interfaces {
+  module msg {
+    struct Thrusters {
+      rov_interfaces::msg::Thruster upper_left;
+
+      rov_interfaces::msg::Thruster upper_right;
+
+      rov_interfaces::msg::Thruster lower_right;
+
+      rov_interfaces::msg::Thruster lower_left;
+
+      rov_interfaces::msg::Thruster left;
+
+      rov_interfaces::msg::Thruster right;
+    };
+  };
+};

@@ -46,7 +46,7 @@ public:
         // _joy_subscription = this->create_subscription<sensor_msgs::msg::Joy>("joy", 10,std::bind(&joy_node::joy_recv_callback,this,std::placeholders::_1));
         _Twist_publisher = this->create_publisher<geometry_msgs::msg::Twist>("cmd_vel", 10);
         // 创建定时器，500ms为周期，定时发布
-        timer_ = this->create_wall_timer(std::chrono::milliseconds(50), std::bind(&joy_node::timer_callback, this));
+        timer_ = this->create_wall_timer(std::chrono::milliseconds(100), std::bind(&joy_node::timer_callback, this));
 
     }
 

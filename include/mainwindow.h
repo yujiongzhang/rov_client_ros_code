@@ -6,6 +6,8 @@
 #include "joy_thread.h"
 #include "status_receive_thread.h"
 #include "parameter_process_thread.h"
+#include "rov_structs.h"
+#include <QMetaType>
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -34,12 +36,13 @@ private:
     void uiInit();
 
 public slots:
-    void onRecvData(QString);
     void update_depth(int);
+    void update_thrusters(int* msg);
+    void update_tracks(int* msg);
+    void update_cabin_state(CabinState msg);
+    
 
 private slots:
-    void on_pushButton_clicked();
-    void on_joy_pushButton_clicked();
     void on_led_on_pushButton_clicked();
     void on_led_off_pushButton_clicked();
 
