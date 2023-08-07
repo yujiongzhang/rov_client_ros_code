@@ -10,7 +10,8 @@ MainWindow::MainWindow(QWidget *parent)
     qRegisterMetaType<CabinState>("CabinState");//跨线程的信号和槽的参数传递中,参数的类型是自定义的类型
     qRegisterMetaType<ThrustersClientStruct>("ThrustersClientStruct");//跨线程的信号和槽的参数传递中,参数的类型是自定义的类型
     qRegisterMetaType<TracksPCStruct>("TracksPCStruct");//跨线程的信号和槽的参数传递中,参数的类型是自定义的类型
-    
+    qRegisterMetaType<ImuPCStruct>("ImuPCStruct");//跨线程的信号和槽的参数传递中,参数的类型是自定义的类型
+
     ui->setupUi(this);
 
     int argc=0;
@@ -34,6 +35,7 @@ MainWindow::MainWindow(QWidget *parent)
     uiInit();
 
     connect(statusReceiveNode->node->connectqt,&status_receive_node_connect_qt::s_depth,this,&MainWindow::update_depth);
+    connect(statusReceiveNode->node->connectqt,&status_receive_node_connect_qt::s_imu,this,&MainWindow::update_imu);
     connect(statusReceiveNode->node->connectqt,&status_receive_node_connect_qt::s_thrusters,this,&MainWindow::update_thrusters);
     connect(statusReceiveNode->node->connectqt,&status_receive_node_connect_qt::s_tracks,this,&MainWindow::update_tracks);
     connect(statusReceiveNode->node->connectqt,&status_receive_node_connect_qt::s_cabin_state,this,&MainWindow::update_cabin_state);
@@ -62,6 +64,13 @@ void MainWindow::uiInit()
 
     ui->camera1->set_camera_source("PC_Camera");
     ui->camera2->set_camera_source("rtsp://192.168.0.88:554/1");
+}
+
+void MainWindow::update_imu(ImuPCStruct msg)
+{
+    ui->yaw_label->setText(QString::number(msg.yaw));
+    ui->pitch_label->setText(QString::number(msg.pitch));
+    ui->rol_label->setText(QString::number(msg.roll));
 }
 
 void MainWindow::update_thrusters(ThrustersClientStruct msg)

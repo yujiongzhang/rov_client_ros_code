@@ -23,6 +23,13 @@ struct CabinState
     float cpu_temperature;     //CPU温度
 };
 
+struct ImuPCStruct
+{
+    double roll;
+    double pitch;
+    double yaw;
+};
+
 struct ThrustersClientStruct
 {
     int16_t thruster_ul;

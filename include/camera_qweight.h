@@ -5,6 +5,7 @@
 #include <QThread>
 #include "qpainter.h"
 #include <opencv2/opencv.hpp>
+#include "isPingable.h"
 
 
 QImage cvMat2QImage(const cv::Mat& mat);
@@ -44,7 +45,7 @@ class camera_qweight : public QWidget
 {
     Q_OBJECT
 private:
-    camera_thread *my_camera_thread;
+    camera_thread* my_camera_thread;
     QImage image;
     QImage defaut_image;
 

@@ -13,6 +13,8 @@
 #include "rov_interfaces/msg/thrusters.hpp"
 #include "rov_interfaces/msg/tracks.hpp"
 #include "rov_interfaces/msg/cabin_state.hpp"
+#include <tf2/LinearMath/Quaternion.h>
+#include <tf2/LinearMath/Matrix3x3.h>
 
 
 class status_receive_node_connect_qt :public QObject
@@ -21,6 +23,7 @@ class status_receive_node_connect_qt :public QObject
 
 signals:
     void s_depth(int);
+    void s_imu(ImuPCStruct);
     void s_thrusters(ThrustersClientStruct);
     void s_tracks(TracksPCStruct);
     void s_cabin_state(CabinState);
@@ -30,6 +33,10 @@ public:
 
     void emit_depth(int msg){
         emit s_depth(msg);
+    }
+
+    void emit_imu(ImuPCStruct msg){
+        emit s_imu(msg);
     }
 
     void emit_thrusters(ThrustersClientStruct msg){
@@ -51,7 +58,7 @@ class status_receive_node : public rclcpp::Node
 private:
     rclcpp::Subscription<std_msgs::msg::Int32>::SharedPtr _depth_subscription;//深度
     rclcpp::Subscription<std_msgs::msg::Int32>::SharedPtr _height_subscription;//高度
-    rclcpp::Subscription<sensor_msgs::msg::Imu>::SharedPtr imu_subscription;
+    rclcpp::Subscription<sensor_msgs::msg::Imu>::SharedPtr imu_subscription; //imu
     rclcpp::Subscription<rov_interfaces::msg::Thrusters>::SharedPtr thrusters_subscription;
     rclcpp::Subscription<rov_interfaces::msg::Tracks>::SharedPtr tracks_subscription;
     rclcpp::Subscription<rov_interfaces::msg::CabinState>::SharedPtr cabinstate_subscription;
@@ -93,8 +100,13 @@ public:
 
     void imu_recv_callback(const sensor_msgs::msg::Imu::SharedPtr msg)
     {
-        float aaa = msg -> linear_acceleration.x;
         qDebug()<<"receive imu msg";
+        tf2::Quaternion quaternion(msg->orientation.x, msg->orientation.y, msg->orientation.z, msg->orientation.w);
+        tf2::Matrix3x3 matrix(quaternion);
+        ImuPCStruct imu_receive;
+        matrix.getRPY(imu_receive.roll, imu_receive.pitch, imu_receive.yaw);
+        connectqt->emit_imu(imu_receive);
+
     }
 
 
