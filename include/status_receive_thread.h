@@ -21,8 +21,8 @@ class status_receive_node_connect_qt :public QObject
 
 signals:
     void s_depth(int);
-    void s_thrusters(int*);
-    void s_tracks(int*);
+    void s_thrusters(ThrustersClientStruct);
+    void s_tracks(TracksPCStruct);
     void s_cabin_state(CabinState);
 
 public:
@@ -32,11 +32,11 @@ public:
         emit s_depth(msg);
     }
 
-    void emit_thrusters(int* msg){
+    void emit_thrusters(ThrustersClientStruct msg){
         emit s_thrusters(msg);
     }
 
-    void emit_tracks(int* msg){
+    void emit_tracks(TracksPCStruct msg){
         emit s_tracks(msg);
     }
 
@@ -106,23 +106,22 @@ public:
     void thrusters_recv_callback(const rov_interfaces::msg::Thrusters::SharedPtr msg)
     {
         qDebug()<<"receive thrusters msg";
-        int thrusters_receive[6];
-        thrusters_receive[0] = msg->upper_left.speed_rpm;
-        thrusters_receive[1] = msg->upper_right.speed_rpm;
-        thrusters_receive[2] = msg->lower_left.speed_rpm;
-        thrusters_receive[3] = msg->lower_right.speed_rpm;
-        thrusters_receive[4] = msg->left.speed_rpm;
-        thrusters_receive[5] = msg->right.speed_rpm;
+        ThrustersClientStruct thrusters_receive;
+        thrusters_receive.thruster_ul = msg->upper_left.speed_rpm;
+        thrusters_receive.thruster_ur = msg->upper_right.speed_rpm;
+        thrusters_receive.thruster_ll = msg->lower_left.speed_rpm;
+        thrusters_receive.thruster_lr = msg->lower_right.speed_rpm;
+        thrusters_receive.thruster_l = msg->left.speed_rpm;
+        thrusters_receive.thruster_r = msg->right.speed_rpm;
         connectqt->emit_thrusters(thrusters_receive);
     }
-
+    //using rov_interfaces::msg::Tracks::SharedPtr = std::shared_ptr<class>
     void tracks_recv_callback(const rov_interfaces::msg::Tracks msg)
     {
         qDebug()<<"receive tracks msg";
-        int tracks_receive[2];
-        tracks_receive[0] = msg.track_speed[0];
-        tracks_receive[1] = msg.track_speed[1];
-        qDebug()<<"track left :" << tracks_receive[0] << "track left:"<< tracks_receive[1];
+        TracksPCStruct tracks_receive;
+        tracks_receive.track_l = msg.track_speed[0];
+        tracks_receive.track_r = msg.track_speed[1];
         connectqt->emit_tracks(tracks_receive);
     }
 

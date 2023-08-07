@@ -37,8 +37,8 @@ private:
 
 public slots:
     void update_depth(int);
-    void update_thrusters(int* msg);
-    void update_tracks(int* msg);
+    void update_thrusters(ThrustersClientStruct msg);
+    void update_tracks(TracksPCStruct msg);
     void update_cabin_state(CabinState msg);
     
 

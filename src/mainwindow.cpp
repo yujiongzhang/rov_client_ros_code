@@ -8,6 +8,9 @@ MainWindow::MainWindow(QWidget *parent)
 {
 
     qRegisterMetaType<CabinState>("CabinState");//跨线程的信号和槽的参数传递中,参数的类型是自定义的类型
+    qRegisterMetaType<ThrustersClientStruct>("ThrustersClientStruct");//跨线程的信号和槽的参数传递中,参数的类型是自定义的类型
+    qRegisterMetaType<TracksPCStruct>("TracksPCStruct");//跨线程的信号和槽的参数传递中,参数的类型是自定义的类型
+    
     ui->setupUi(this);
 
     int argc=0;
@@ -61,20 +64,20 @@ void MainWindow::uiInit()
     ui->camera2->set_camera_source("rtsp://192.168.0.88:554/1");
 }
 
-void MainWindow::update_thrusters(int *msg)
+void MainWindow::update_thrusters(ThrustersClientStruct msg)
 {
-    ui->thr_ul_label->setText(QString::number(msg[0]));
-    ui->thr_ur_label->setText(QString::number(msg[1]));
-    ui->thr_ll_label->setText(QString::number(msg[2]));
-    ui->thr_lr_label->setText(QString::number(msg[3]));
-    ui->thr_l_label->setText(QString::number(msg[4]));
-    ui->thr_r_label->setText(QString::number(msg[5]));
+    ui->thr_ul_label->setText(QString::number(msg.thruster_ul));
+    ui->thr_ur_label->setText(QString::number(msg.thruster_ur));
+    ui->thr_ll_label->setText(QString::number(msg.thruster_ll));
+    ui->thr_lr_label->setText(QString::number(msg.thruster_lr));
+    ui->thr_l_label->setText(QString::number(msg.thruster_l));
+    ui->thr_r_label->setText(QString::number(msg.thruster_r));
 }
 
-void MainWindow::update_tracks(int *msg)
+void MainWindow::update_tracks(TracksPCStruct msg)
 {
-    ui->tra_l_label->setText(QString::number(msg[0]));
-    ui->tra_r_label->setText(QString::number(msg[1]));
+    ui->tra_l_label->setText(QString::number(msg.track_l));
+    ui->tra_r_label->setText(QString::number(msg.track_r));
 }
 
 void MainWindow::update_cabin_state(CabinState msg)

@@ -24,6 +24,7 @@
 #include "std_msgs/msg/int32.hpp"
 #include "rov_interfaces/msg/tracks.hpp"
 #include "rov_interfaces/msg/cabin_state.hpp"
+#include "rov_interfaces/msg/thrusters.hpp"
 
 class rclcomm_class_node : public rclcpp::Node
 {
@@ -31,9 +32,9 @@ private:
     rclcpp::Publisher<std_msgs::msg::Int32>::SharedPtr _publisher;
     rclcpp::Publisher<rov_interfaces::msg::Tracks>::SharedPtr tracks_publisher;
     rclcpp::Publisher<rov_interfaces::msg::CabinState>::SharedPtr cabin_state_publisher;
-
-    rclcpp::Subscription<std_msgs::msg::Int32>::SharedPtr _subscription;
-    rclcpp::Subscription<rov_interfaces::msg::Tracks>::SharedPtr tracks_subscription; //测试自定义消息类型
+    rclcpp::Publisher<rov_interfaces::msg::Thrusters>::SharedPtr thrusters_publisher;
+    // rclcpp::Subscription<std_msgs::msg::Int32>::SharedPtr _subscription;
+    // rclcpp::Subscription<rov_interfaces::msg::Tracks>::SharedPtr tracks_subscription; //测试自定义消息类型
 
     // 声名定时器指针
     rclcpp::TimerBase::SharedPtr timer_;
@@ -42,6 +43,7 @@ private:
     std_msgs::msg::Int32 pub_msg;
     rov_interfaces::msg::Tracks tracks_msg;
     rov_interfaces::msg::CabinState cabin_state_msg;
+    rov_interfaces::msg::Thrusters thrusters_msg;
 
 
 public:
@@ -60,14 +62,17 @@ public:
         cabin_state_msg.cabin_water_level = 30;
         cabin_state_msg.cpu_temperature = 0;
         
+        thrusters_msg.upper_left.speed_rpm = 11;
+        thrusters_msg.upper_right.speed_rpm = 22;
+
         _publisher = this->create_publisher<std_msgs::msg::Int32>("ros2_qt_demo_publish", 10);
         tracks_publisher = this->create_publisher<rov_interfaces::msg::Tracks>("tracks", 10);
 
         cabin_state_publisher = this->create_publisher<rov_interfaces::msg::CabinState>("cabin_state", 10);
+        thrusters_publisher = this->create_publisher<rov_interfaces::msg::Thrusters>("thrusters", 10);
 
         // _subscription = this->create_subscription<std_msgs::msg::Int32>("ros2_qt_demo_publish", 10,std::bind(&rclcomm_class_node::recv_callback,this,std::placeholders::_1));
-        tracks_subscription = this->create_subscription<rov_interfaces::msg::Tracks>("tracks", \
-        10,std::bind(&rclcomm_class_node::recv_callback,this,std::placeholders::_1));
+        // tracks_subscription = this->create_subscription<rov_interfaces::msg::Tracks>("tracks",10,std::bind(&rclcomm_class_node::recv_callback,this,std::placeholders::_1));
         
         
         // 创建定时器，500ms为周期，定时发布
@@ -84,6 +89,8 @@ public:
         tracks_publisher->publish(tracks_msg);
 
         cabin_state_publisher->publish(cabin_state_msg);
+
+        thrusters_publisher->publish(thrusters_msg);
 
         pub_msg.data++;
     }
