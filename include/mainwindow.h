@@ -36,11 +36,12 @@ private:
     void uiInit();
 
 public slots:
-    void update_depth(int);
     void update_imu(ImuPCStruct msg);
     void update_thrusters(ThrustersClientStruct msg);
     void update_tracks(TracksPCStruct msg);
     void update_cabin_state(CabinState msg);
+    void update_depth_meter(float msg);
+    void update_altimeter(float msg);
     
 
 private slots:

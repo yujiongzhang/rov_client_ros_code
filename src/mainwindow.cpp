@@ -18,11 +18,13 @@ MainWindow::MainWindow(QWidget *parent)
     char **argv=NULL;
     rclcpp::init(argc, argv);
 
-    commNode=new rclcomm_class();
+    // commNode=new rclcomm_class();
+    // commNode -> start();
+
     joyNode = new joy_thread();
     statusReceiveNode = new status_receive_thread();
     
-    commNode -> start();
+
     joyNode->start();
     statusReceiveNode->start();
 
@@ -34,7 +36,8 @@ MainWindow::MainWindow(QWidget *parent)
 
     uiInit();
 
-    connect(statusReceiveNode->node->connectqt,&status_receive_node_connect_qt::s_depth,this,&MainWindow::update_depth);
+    connect(statusReceiveNode->node->connectqt,&status_receive_node_connect_qt::s_depth_meter,this,&MainWindow::update_depth_meter);
+    connect(statusReceiveNode->node->connectqt,&status_receive_node_connect_qt::s_altimeter,this,&MainWindow::update_altimeter);
     connect(statusReceiveNode->node->connectqt,&status_receive_node_connect_qt::s_imu,this,&MainWindow::update_imu);
     connect(statusReceiveNode->node->connectqt,&status_receive_node_connect_qt::s_thrusters,this,&MainWindow::update_thrusters);
     connect(statusReceiveNode->node->connectqt,&status_receive_node_connect_qt::s_tracks,this,&MainWindow::update_tracks);
@@ -97,14 +100,15 @@ void MainWindow::update_cabin_state(CabinState msg)
     ui->water_level_label->setText(QString::number(msg.cabin_water_level));
 }
 
-void MainWindow::update_depth(int msg)
+void MainWindow::update_depth_meter(float msg)
 {
     ui->depth_label->setText(QString::number(msg));
 }
 
-
-
-
+void MainWindow::update_altimeter(float msg)
+{
+    ui->height_label->setText(QString::number(msg));
+}
 
 void MainWindow::on_led_off_pushButton_clicked()
 {

@@ -9,6 +9,7 @@
 #include "rov_structs.h"
 
 #include "std_msgs/msg/int32.hpp"
+#include "std_msgs/msg/float32.hpp"
 #include "sensor_msgs/msg/imu.hpp"
 #include "rov_interfaces/msg/thrusters.hpp"
 #include "rov_interfaces/msg/tracks.hpp"
@@ -22,7 +23,9 @@ class status_receive_node_connect_qt :public QObject
     Q_OBJECT
 
 signals:
-    void s_depth(int);
+
+    void s_depth_meter(float);
+    void s_altimeter(float);
     void s_imu(ImuPCStruct);
     void s_thrusters(ThrustersClientStruct);
     void s_tracks(TracksPCStruct);
@@ -31,8 +34,13 @@ signals:
 public:
     status_receive_node_connect_qt(){}
 
-    void emit_depth(int msg){
-        emit s_depth(msg);
+
+    void emit_depth_meter(float msg){
+        emit s_depth_meter(msg);
+    }
+
+    void emit_altimeter(float msg){
+        emit s_altimeter(msg);
     }
 
     void emit_imu(ImuPCStruct msg){
@@ -56,8 +64,9 @@ public:
 class status_receive_node : public rclcpp::Node
 {
 private:
-    rclcpp::Subscription<std_msgs::msg::Int32>::SharedPtr _depth_subscription;//深度
-    rclcpp::Subscription<std_msgs::msg::Int32>::SharedPtr _height_subscription;//高度
+    
+    rclcpp::Subscription<std_msgs::msg::Float32>::SharedPtr depth_meter_subscription;//
+    rclcpp::Subscription<std_msgs::msg::Float32>::SharedPtr altimeter_subscription;//高度
     rclcpp::Subscription<sensor_msgs::msg::Imu>::SharedPtr imu_subscription; //imu
     rclcpp::Subscription<rov_interfaces::msg::Thrusters>::SharedPtr thrusters_subscription;
     rclcpp::Subscription<rov_interfaces::msg::Tracks>::SharedPtr tracks_subscription;
@@ -73,11 +82,12 @@ public:
     {
         connectqt = new status_receive_node_connect_qt;
         RCLCPP_INFO(this->get_logger(), "%s节点已经启动.", name.c_str());
-        _depth_subscription = this->create_subscription<std_msgs::msg::Int32>("ros2_qt_demo_publish", \
-        10,std::bind(&status_receive_node::depth_recv_callback,this,std::placeholders::_1));
 
-        _height_subscription = this->create_subscription<std_msgs::msg::Int32>("rov_height", \
-        10,std::bind(&status_receive_node::height_recv_callback,this,std::placeholders::_1));
+        depth_meter_subscription = this->create_subscription<std_msgs::msg::Float32>("depth_meter", \
+        10,std::bind(&status_receive_node::depth_meter_recv_callback,this,std::placeholders::_1));
+
+        altimeter_subscription = this->create_subscription<std_msgs::msg::Float32>("altimeter", \
+        10,std::bind(&status_receive_node::altimeter_recv_callback,this,std::placeholders::_1));
 
         imu_subscription = this->create_subscription<sensor_msgs::msg::Imu>("imu", \
         10,std::bind(&status_receive_node::imu_recv_callback,this,std::placeholders::_1));
@@ -93,10 +103,6 @@ public:
 
     }
 
-    void depth_recv_callback(const std_msgs::msg::Int32::SharedPtr msg)
-    {
-        connectqt->emit_depth(msg->data);
-    }
 
     void imu_recv_callback(const sensor_msgs::msg::Imu::SharedPtr msg)
     {
@@ -109,10 +115,18 @@ public:
 
     }
 
-
-    void height_recv_callback(const std_msgs::msg::Int32::SharedPtr msg)
+    void depth_meter_recv_callback(const std_msgs::msg::Float32 msg)
     {
-        RCLCPP_INFO(this->get_logger(),"i am listen from height topic: %d",msg->data);
+        float depth_meter_receive;
+        depth_meter_receive = msg.data;
+        connectqt -> emit_depth_meter(depth_meter_receive);
+    }
+
+    void altimeter_recv_callback(const std_msgs::msg::Float32 msg)
+    {
+        float altimeter_receive;
+        altimeter_receive = msg.data;
+        connectqt->emit_altimeter(altimeter_receive);
     }
 
     void thrusters_recv_callback(const rov_interfaces::msg::Thrusters::SharedPtr msg)
