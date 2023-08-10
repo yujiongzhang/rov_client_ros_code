@@ -19,6 +19,13 @@ void parameter_process_thread::set_rov_behaviour(int msg)
     node->node_set_rov_behaviour(msg);
 }
 
+int parameter_process_thread::connect_server()
+{
+    int ret = 0;
+    ret = node->node_connect_server();
+    return ret;
+}
+
 void parameter_process_node::led_turn_on()
 {
     // 修改节点的参数值
@@ -157,4 +164,31 @@ void parameter_process_node::node_set_rov_behaviour(int msg)
     default:
         break;
     }
+}
+
+int parameter_process_node::node_connect_server()
+{
+    int ret,ret1,ret2;
+    ret = 0;
+    // 等待参数服务器状态
+    if(!parameter_client->wait_for_service(std::chrono::seconds(1))) {
+        RCLCPP_INFO(this->get_logger(), "Waiting for the parameter service to start...");
+        ret1 = 0;
+    }
+    else{
+        RCLCPP_INFO(this->get_logger(), "Start the parameter service successfully!");
+        ret1 = 1;
+    }
+
+    //等待参数服务器状态
+    if(!parameter_client_controller->wait_for_service(std::chrono::seconds(1))) {
+        RCLCPP_INFO(this->get_logger(), "Waiting for the parameter service to start...");
+        ret2 = 0;
+    }
+    else{
+        RCLCPP_INFO(this->get_logger(), "Start the parameter service successfully!");
+        ret2 = 1;
+    }
+    ret = ret1 & ret2;
+    return ret;
 }

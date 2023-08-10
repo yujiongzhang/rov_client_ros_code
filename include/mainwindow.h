@@ -47,6 +47,8 @@ public slots:
     
 
 private slots:
+
+    void on_connect_server_pushButton_clicked();
     void on_led_on_pushButton_clicked();
     void on_led_off_pushButton_clicked();
 

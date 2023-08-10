@@ -126,7 +126,7 @@ void MainWindow::on_led_off_pushButton_clicked()
     ui->led_on_pushButton->setEnabled(true);
     ui->led_off_pushButton->setEnabled(false);
 }
-
+//--------------------------------------------------------
 //-------------camera --------------------------------------
 void MainWindow::on_camera_on_pushButton_clicked()
 {
@@ -145,6 +145,13 @@ void MainWindow::on_camera2_off_pushButton_clicked()
     ui->camera2->camera_close();
 }
 //-------------camera --------------------------------------
+//------------------------------------------------------------
+//-------------push Button-----------------------------------
+void MainWindow::on_connect_server_pushButton_clicked()
+{
+    int ret = 0;
+    ret = parameterProcessNode->connect_server();
+}
 
 void MainWindow::on_led_on_pushButton_clicked()
 {

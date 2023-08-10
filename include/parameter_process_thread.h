@@ -23,28 +23,17 @@ public:
 
         std::string target_node_name = "/linker_node";
         parameter_client = std::make_shared<rclcpp::SyncParametersClient>(this,target_node_name);
-        // 等待参数服务器状态
-        if(!parameter_client->wait_for_service(std::chrono::seconds(1))) {
-            RCLCPP_INFO(this->get_logger(), "Waiting for the parameter service to start...");
-        }
-        else{
-            RCLCPP_INFO(this->get_logger(), "Start the parameter service successfully!");
-        }
+
 
         std::string target_node_name_controller = "/track_rov_pid_controller";
         parameter_client_controller = std::make_shared<rclcpp::SyncParametersClient>(this,target_node_name_controller);
-        //等待参数服务器状态
-        if(!parameter_client_controller->wait_for_service(std::chrono::seconds(1))) {
-            RCLCPP_INFO(this->get_logger(), "Waiting for the parameter service to start...");
-        }
-        else{
-            RCLCPP_INFO(this->get_logger(), "Start the parameter service successfully!");
-        }
+
     }
 
     void led_turn_on();
     void led_turn_off();
     void node_set_rov_behaviour(int msg);
+    int node_connect_server();
 
 };
 
@@ -60,6 +49,7 @@ public:
     std::shared_ptr<parameter_process_node> node;
 
     void set_rov_behaviour(int msg);
+    int connect_server();
 
 private:
 
