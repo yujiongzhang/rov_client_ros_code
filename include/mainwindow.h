@@ -26,6 +26,7 @@ public:
     status_receive_thread *statusReceiveNode;
     parameter_process_thread *parameterProcessNode;
 
+
 private:
     Ui::MainWindow *ui;
 
@@ -36,6 +37,7 @@ private:
     void uiInit();
 
 public slots:
+    void update_test(int msg);
     void update_imu(ImuPCStruct msg);
     void update_thrusters(ThrustersClientStruct msg);
     void update_tracks(TracksPCStruct msg);

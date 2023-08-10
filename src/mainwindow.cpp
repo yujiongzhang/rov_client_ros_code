@@ -43,6 +43,9 @@ MainWindow::MainWindow(QWidget *parent)
     connect(statusReceiveNode->node->connectqt,&status_receive_node_connect_qt::s_tracks,this,&MainWindow::update_tracks);
     connect(statusReceiveNode->node->connectqt,&status_receive_node_connect_qt::s_cabin_state,this,&MainWindow::update_cabin_state);
 
+    // connect(joyNode->node->connectqt,          &joy_node_connect_qt::s_rov_behaviour,          this, &MainWindow::update_test);
+    connect(joyNode->node->connectqt,&joy_node_connect_qt::s_rov_behaviour,parameterProcessNode,&parameter_process_thread::set_rov_behaviour);
+
 
     // QImage img;
     // img.load(":/picture/camera2.jpg");
@@ -67,6 +70,11 @@ void MainWindow::uiInit()
 
     ui->camera1->set_camera_source("PC_Camera");
     ui->camera2->set_camera_source("rtsp://192.168.0.88:554/1");
+}
+
+void MainWindow::update_test(int msg)
+{
+    qDebug()<< "int is: "<<msg;
 }
 
 void MainWindow::update_imu(ImuPCStruct msg)
