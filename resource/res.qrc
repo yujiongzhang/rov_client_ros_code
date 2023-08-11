@@ -6,5 +6,8 @@
         <file>picture/map.jpg</file>
         <file>picture/sonar.png</file>
         <file>picture/tubiao.png</file>
+        <file>module/rovmini.stl</file>
+        <file>module/stl.frag</file>
+        <file>module/stl.vert</file>
     </qresource>
 </RCC>

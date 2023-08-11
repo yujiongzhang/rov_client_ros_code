@@ -51,7 +51,9 @@ public:
     void set_rov_behaviour(int msg);
     int connect_server();
 
+
 private:
+    int parameter_client_state;
 
 signals:
 

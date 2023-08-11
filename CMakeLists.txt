@@ -20,7 +20,7 @@ find_package(tf2_ros REQUIRED)
 find_package(rcl_interfaces REQUIRED)
 
 find_package(Boost 1.71.0 REQUIRED COMPONENTS thread)
-find_package(Qt5 COMPONENTS Widgets REQUIRED)
+find_package(Qt5 COMPONENTS Widgets Network REQUIRED)
 find_package(OpenCV REQUIRED)
 
 find_package(rov_interfaces REQUIRED)
@@ -52,7 +52,7 @@ add_executable(${PROJECT_NAME}
     ${QT_RESOUCE_HPP}
   )
 ament_target_dependencies(${PROJECT_NAME} rclcpp Boost std_msgs sensor_msgs geometry_msgs rov_interfaces tf2_ros rcl_interfaces)
-target_link_libraries(${PROJECT_NAME} Qt5::Widgets ${OpenCV_LIBS})
+target_link_libraries(${PROJECT_NAME} Qt5::Widgets Qt5::Network ${OpenCV_LIBS})
 
 
 if(BUILD_TESTING)

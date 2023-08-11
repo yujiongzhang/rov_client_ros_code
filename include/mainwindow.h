@@ -56,6 +56,8 @@ private slots:
     void on_camera_off_pushButton_clicked();
     void on_camera2_on_pushButton_clicked();
     void on_camera2_off_pushButton_clicked();
+    void on_sonar_on_pushButton_clicked();
+    void on_sonar_off_pushButton_clicked();
 
     void on_brightness_slider_sliderReleased();
 };

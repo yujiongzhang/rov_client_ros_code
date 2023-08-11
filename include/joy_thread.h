@@ -65,7 +65,7 @@ public:
         get_rov_behaviour = 0;
 
         memset(&map,0,sizeof(xbox_map_t));
-        xbox_fd = xbox_open("/dev/input/js1");
+        xbox_fd = xbox_open("/dev/input/js0");
         if(xbox_fd<0)
         {
             RCLCPP_INFO(this->get_logger(), "没找到手柄");

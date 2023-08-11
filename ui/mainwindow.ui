@@ -14,157 +14,22 @@
    <string>ROV_Client_X</string>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <widget class="QLabel" name="label_3">
-    <property name="geometry">
-     <rect>
-      <x>1010</x>
-      <y>10</y>
-      <width>280</width>
-      <height>210</height>
-     </rect>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">background-color: rgb(0, 0, 0);</string>
-    </property>
-    <property name="text">
-     <string>TextLabel</string>
-    </property>
-   </widget>
    <widget class="QWidget" name="widget" native="true">
     <property name="geometry">
      <rect>
-      <x>290</x>
-      <y>120</y>
-      <width>211</width>
-      <height>44</height>
+      <x>10</x>
+      <y>150</y>
+      <width>281</width>
+      <height>171</height>
      </rect>
     </property>
-    <layout class="QHBoxLayout" name="horizontalLayout">
-     <item>
-      <widget class="QPushButton" name="led_on_pushButton">
-       <property name="styleSheet">
-        <string notr="true">QPushButton{
-	font: 10pt &quot;微软雅黑&quot;;
-    color: #2f3640;
-    background-color: #f5f690;
-    border-color: #2f3640;
-    border-radius: 10px;
-    border-style: solid;
-    border-width: 2px;
-    padding: 1px;
-}
-
-QPushButton::hover{	
-    color: #FFFFFF;
-    background-color: #718093;
-    border-color: #2f3640;
-}
-
-QPushButton::pressed,QPushButton::checked{
-    color: #FFFFFF;
-    background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, stop:0 #273c75, stop:1 #487eb0);
-}
-
-QPushButton::disabled{
-    color: #FFFFFF;
-    background-color: #dcdde1;
-    border-color: #dcdde1;
-}</string>
-       </property>
-       <property name="text">
-        <string>开灯</string>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QPushButton" name="led_off_pushButton">
-       <property name="styleSheet">
-        <string notr="true">QPushButton{
-	font: 10pt &quot;微软雅黑&quot;;
-    color: #2f3640;
-    background-color: #f5f690;
-    border-color: #2f3640;
-    border-radius: 10px;
-    border-style: solid;
-    border-width: 2px;
-    padding: 1px;
-}
-
-QPushButton::hover{	
-    color: #FFFFFF;
-    background-color: #718093;
-    border-color: #2f3640;
-}
-
-QPushButton::pressed,QPushButton::checked{
-    color: #FFFFFF;
-    background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, stop:0 #273c75, stop:1 #487eb0);
-}
-
-QPushButton::disabled{
-    color: #FFFFFF;
-    background-color: #dcdde1;
-    border-color: #dcdde1;
-}</string>
-       </property>
-       <property name="text">
-        <string>关灯</string>
-       </property>
-      </widget>
-     </item>
-    </layout>
-   </widget>
-   <widget class="QWidget" name="widget_2" native="true">
-    <property name="geometry">
-     <rect>
-      <x>290</x>
-      <y>170</y>
-      <width>211</width>
-      <height>44</height>
-     </rect>
-    </property>
-    <layout class="QHBoxLayout" name="horizontalLayout_2">
-     <item>
-      <widget class="QPushButton" name="camera_on_pushButton">
-       <property name="styleSheet">
-        <string notr="true">QPushButton{
-	font: 10pt &quot;微软雅黑&quot;;
-    color: #2f3640;
-    background-color: #f5f690;
-    border-color: #2f3640;
-    border-radius: 10px;
-    border-style: solid;
-    border-width: 2px;
-    padding: 1px;
-}
-
-QPushButton::hover{	
-    color: #FFFFFF;
-    background-color: #718093;
-    border-color: #2f3640;
-}
-
-QPushButton::pressed,QPushButton::checked{
-    color: #FFFFFF;
-    background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, stop:0 #273c75, stop:1 #487eb0);
-}
-
-QPushButton::disabled{
-    color: #FFFFFF;
-    background-color: #dcdde1;
-    border-color: #dcdde1;
-}</string>
-       </property>
-       <property name="text">
-        <string>打开相机</string>
-       </property>
-      </widget>
-     </item>
-     <item>
+    <layout class="QGridLayout" name="gridLayout_6">
+     <item row="1" column="1">
       <widget class="QPushButton" name="camera_off_pushButton">
        <property name="styleSheet">
         <string notr="true">QPushButton{
 	font: 10pt &quot;微软雅黑&quot;;
+	font: bold;
     color: #2f3640;
     background-color: #f5f690;
     border-color: #2f3640;
@@ -192,7 +57,275 @@ QPushButton::disabled{
 }</string>
        </property>
        <property name="text">
-        <string>关闭相机</string>
+        <string>Camera OFF</string>
+       </property>
+      </widget>
+     </item>
+     <item row="0" column="1">
+      <widget class="QPushButton" name="led_off_pushButton">
+       <property name="styleSheet">
+        <string notr="true">QPushButton{
+	font: 10pt &quot;微软雅黑&quot;;
+	font: bold;
+    color: #2f3640;
+    background-color: #f5f690;
+    border-color: #2f3640;
+    border-radius: 10px;
+    border-style: solid;
+    border-width: 2px;
+    padding: 1px;
+}
+
+QPushButton::hover{	
+    color: #FFFFFF;
+    background-color: #718093;
+    border-color: #2f3640;
+}
+
+QPushButton::pressed,QPushButton::checked{
+    color: #FFFFFF;
+    background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, stop:0 #273c75, stop:1 #487eb0);
+}
+
+QPushButton::disabled{
+    color: #FFFFFF;
+    background-color: #dcdde1;
+    border-color: #dcdde1;
+}</string>
+       </property>
+       <property name="text">
+        <string>LED OFF</string>
+       </property>
+      </widget>
+     </item>
+     <item row="0" column="0">
+      <widget class="QPushButton" name="led_on_pushButton">
+       <property name="styleSheet">
+        <string notr="true">QPushButton{
+	font: 10pt &quot;微软雅黑&quot;;
+	font: bold;
+    color: #2f3640;
+    background-color: #f5f690;
+    border-color: #2f3640;
+    border-radius: 10px;
+    border-style: solid;
+    border-width: 2px;
+    padding: 1px;
+}
+
+QPushButton::hover{	
+    color: #FFFFFF;
+    background-color: #718093;
+    border-color: #2f3640;
+}
+
+QPushButton::pressed,QPushButton::checked{
+    color: #FFFFFF;
+    background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, stop:0 #273c75, stop:1 #487eb0);
+}
+
+QPushButton::disabled{
+    color: #FFFFFF;
+    background-color: #dcdde1;
+    border-color: #dcdde1;
+}</string>
+       </property>
+       <property name="text">
+        <string>LED ON</string>
+       </property>
+      </widget>
+     </item>
+     <item row="3" column="1">
+      <widget class="QPushButton" name="sonar_off_pushButton">
+       <property name="styleSheet">
+        <string notr="true">QPushButton{
+	font: 10pt &quot;微软雅黑&quot;;
+	font: bold;
+    color: #2f3640;
+    background-color: #f5f690;
+    border-color: #2f3640;
+    border-radius: 10px;
+    border-style: solid;
+    border-width: 2px;
+    padding: 1px;
+}
+
+QPushButton::hover{	
+    color: #FFFFFF;
+    background-color: #718093;
+    border-color: #2f3640;
+}
+
+QPushButton::pressed,QPushButton::checked{
+    color: #FFFFFF;
+    background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, stop:0 #273c75, stop:1 #487eb0);
+}
+
+QPushButton::disabled{
+    color: #FFFFFF;
+    background-color: #dcdde1;
+    border-color: #dcdde1;
+}</string>
+       </property>
+       <property name="text">
+        <string>Sonar OFF</string>
+       </property>
+      </widget>
+     </item>
+     <item row="3" column="0">
+      <widget class="QPushButton" name="sonar_on_pushButton">
+       <property name="font">
+        <font>
+         <family>微软雅黑</family>
+         <pointsize>10</pointsize>
+         <weight>75</weight>
+         <italic>false</italic>
+         <bold>true</bold>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QPushButton{
+	font: 10pt &quot;微软雅黑&quot;;
+	font: bold;
+    color: #2f3640;
+    background-color: #f5f690;
+    border-color: #2f3640;
+    border-radius: 10px;
+    border-style: solid;
+    border-width: 2px;
+    padding: 1px;
+}
+
+QPushButton::hover{	
+    color: #FFFFFF;
+    background-color: #718093;
+    border-color: #2f3640;
+}
+
+QPushButton::pressed,QPushButton::checked{
+    color: #FFFFFF;
+    background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, stop:0 #273c75, stop:1 #487eb0);
+}
+
+QPushButton::disabled{
+    color: #FFFFFF;
+    background-color: #dcdde1;
+    border-color: #dcdde1;
+}</string>
+       </property>
+       <property name="text">
+        <string>Sonar ON</string>
+       </property>
+      </widget>
+     </item>
+     <item row="1" column="0">
+      <widget class="QPushButton" name="camera_on_pushButton">
+       <property name="styleSheet">
+        <string notr="true">QPushButton{
+	font: 10pt &quot;微软雅黑&quot;;
+	font: bold;
+    color: #2f3640;
+    background-color: #f5f690;
+    border-color: #2f3640;
+    border-radius: 10px;
+    border-style: solid;
+    border-width: 2px;
+    padding: 1px;
+}
+
+QPushButton::hover{	
+    color: #FFFFFF;
+    background-color: #718093;
+    border-color: #2f3640;
+}
+
+QPushButton::pressed,QPushButton::checked{
+    color: #FFFFFF;
+    background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, stop:0 #273c75, stop:1 #487eb0);
+}
+
+QPushButton::disabled{
+    color: #FFFFFF;
+    background-color: #dcdde1;
+    border-color: #dcdde1;
+}</string>
+       </property>
+       <property name="text">
+        <string>Camera ON</string>
+       </property>
+      </widget>
+     </item>
+     <item row="2" column="0">
+      <widget class="QPushButton" name="camera2_on_pushButton">
+       <property name="styleSheet">
+        <string notr="true">QPushButton{
+	font: 10pt &quot;微软雅黑&quot;;
+	font: bold;
+    color: #2f3640;
+    background-color: #f5f690;
+    border-color: #2f3640;
+    border-radius: 10px;
+    border-style: solid;
+    border-width: 2px;
+    padding: 1px;
+}
+
+QPushButton::hover{	
+    color: #FFFFFF;
+    background-color: #718093;
+    border-color: #2f3640;
+}
+
+QPushButton::pressed,QPushButton::checked{
+    color: #FFFFFF;
+    background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, stop:0 #273c75, stop:1 #487eb0);
+}
+
+QPushButton::disabled{
+    color: #FFFFFF;
+    background-color: #dcdde1;
+    border-color: #dcdde1;
+}</string>
+       </property>
+       <property name="text">
+        <string>Detec ON</string>
+       </property>
+      </widget>
+     </item>
+     <item row="2" column="1">
+      <widget class="QPushButton" name="camera2_off_pushButton">
+       <property name="styleSheet">
+        <string notr="true">QPushButton{
+	font: 10pt &quot;微软雅黑&quot;;
+	font: bold;
+    color: #2f3640;
+    background-color: #f5f690;
+    border-color: #2f3640;
+    border-radius: 10px;
+    border-style: solid;
+    border-width: 2px;
+    padding: 1px;
+}
+
+QPushButton::hover{	
+    color: #FFFFFF;
+    background-color: #718093;
+    border-color: #2f3640;
+}
+
+QPushButton::pressed,QPushButton::checked{
+    color: #FFFFFF;
+    background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, stop:0 #273c75, stop:1 #487eb0);
+}
+
+QPushButton::disabled{
+    color: #FFFFFF;
+    background-color: #dcdde1;
+    border-color: #dcdde1;
+}</string>
+       </property>
+       <property name="text">
+        <string>Deterc OFF</string>
        </property>
       </widget>
      </item>
@@ -202,7 +335,7 @@ QPushButton::disabled{
     <property name="geometry">
      <rect>
       <x>10</x>
-      <y>450</y>
+      <y>480</y>
       <width>281</width>
       <height>121</height>
      </rect>
@@ -361,7 +494,7 @@ QPushButton::disabled{
     <property name="geometry">
      <rect>
       <x>10</x>
-      <y>590</y>
+      <y>600</y>
       <width>281</width>
       <height>130</height>
      </rect>
@@ -473,9 +606,9 @@ QPushButton::disabled{
    <widget class="QWidget" name="widget_4" native="true">
     <property name="geometry">
      <rect>
-      <x>290</x>
-      <y>10</y>
-      <width>421</width>
+      <x>10</x>
+      <y>60</y>
+      <width>281</width>
       <height>91</height>
      </rect>
     </property>
@@ -629,9 +762,9 @@ border-radius:6px;
     <property name="geometry">
      <rect>
       <x>10</x>
-      <y>730</y>
+      <y>740</y>
       <width>281</width>
-      <height>221</height>
+      <height>211</height>
      </rect>
     </property>
     <property name="font">
@@ -884,7 +1017,7 @@ QPushButton::disabled{
    <widget class="camera_qweight" name="camera2" native="true">
     <property name="geometry">
      <rect>
-      <x>720</x>
+      <x>740</x>
       <y>10</y>
       <width>280</width>
       <height>210</height>
@@ -894,95 +1027,11 @@ QPushButton::disabled{
      <string notr="true">background-color: rgb(97, 53, 131);</string>
     </property>
    </widget>
-   <widget class="QWidget" name="widget_3" native="true">
-    <property name="geometry">
-     <rect>
-      <x>510</x>
-      <y>170</y>
-      <width>201</width>
-      <height>44</height>
-     </rect>
-    </property>
-    <layout class="QHBoxLayout" name="horizontalLayout_3">
-     <item>
-      <widget class="QPushButton" name="camera2_on_pushButton">
-       <property name="styleSheet">
-        <string notr="true">QPushButton{
-	font: 10pt &quot;微软雅黑&quot;;
-    color: #2f3640;
-    background-color: #f5f690;
-    border-color: #2f3640;
-    border-radius: 10px;
-    border-style: solid;
-    border-width: 2px;
-    padding: 1px;
-}
-
-QPushButton::hover{	
-    color: #FFFFFF;
-    background-color: #718093;
-    border-color: #2f3640;
-}
-
-QPushButton::pressed,QPushButton::checked{
-    color: #FFFFFF;
-    background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, stop:0 #273c75, stop:1 #487eb0);
-}
-
-QPushButton::disabled{
-    color: #FFFFFF;
-    background-color: #dcdde1;
-    border-color: #dcdde1;
-}</string>
-       </property>
-       <property name="text">
-        <string>打开相机2</string>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QPushButton" name="camera2_off_pushButton">
-       <property name="styleSheet">
-        <string notr="true">QPushButton{
-	font: 10pt &quot;微软雅黑&quot;;
-    color: #2f3640;
-    background-color: #f5f690;
-    border-color: #2f3640;
-    border-radius: 10px;
-    border-style: solid;
-    border-width: 2px;
-    padding: 1px;
-}
-
-QPushButton::hover{	
-    color: #FFFFFF;
-    background-color: #718093;
-    border-color: #2f3640;
-}
-
-QPushButton::pressed,QPushButton::checked{
-    color: #FFFFFF;
-    background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, stop:0 #273c75, stop:1 #487eb0);
-}
-
-QPushButton::disabled{
-    color: #FFFFFF;
-    background-color: #dcdde1;
-    border-color: #dcdde1;
-}</string>
-       </property>
-       <property name="text">
-        <string>关闭相机2</string>
-       </property>
-      </widget>
-     </item>
-    </layout>
-   </widget>
    <widget class="QGroupBox" name="groupBox_4">
     <property name="geometry">
      <rect>
       <x>10</x>
-      <y>300</y>
+      <y>330</y>
       <width>281</width>
       <height>141</height>
      </rect>
@@ -1187,14 +1236,15 @@ QPushButton::disabled{
     <property name="geometry">
      <rect>
       <x>10</x>
-      <y>30</y>
-      <width>89</width>
+      <y>10</y>
+      <width>121</width>
       <height>25</height>
      </rect>
     </property>
     <property name="styleSheet">
      <string notr="true">QPushButton{
 	font: 10pt &quot;微软雅黑&quot;;
+	font: bold;
     color: #2f3640;
     background-color: #f5f690;
     border-color: #2f3640;
@@ -1225,6 +1275,39 @@ QPushButton::disabled{
      <string>CONNECT</string>
     </property>
    </widget>
+   <widget class="Hms2000" name="sonar" native="true">
+    <property name="geometry">
+     <rect>
+      <x>1030</x>
+      <y>10</y>
+      <width>240</width>
+      <height>210</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(245, 194, 17);</string>
+    </property>
+   </widget>
+   <widget class="AXBOpenGLWidget" name="openGLWidget">
+    <property name="geometry">
+     <rect>
+      <x>300</x>
+      <y>10</y>
+      <width>210</width>
+      <height>210</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="AXBOpenGLWidget" name="openGLWidget_yaw">
+    <property name="geometry">
+     <rect>
+      <x>520</x>
+      <y>10</y>
+      <width>210</width>
+      <height>210</height>
+     </rect>
+    </property>
+   </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">
@@ -1244,6 +1327,17 @@ QPushButton::disabled{
    <extends>QWidget</extends>
    <header location="global">camera_qweight.h</header>
    <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>Hms2000</class>
+   <extends>QWidget</extends>
+   <header location="global">hms2000.h</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>AXBOpenGLWidget</class>
+   <extends>QOpenGLWidget</extends>
+   <header location="global">axbopenglwidget.h</header>
   </customwidget>
  </customwidgets>
  <resources/>

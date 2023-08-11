@@ -4,6 +4,8 @@
 parameter_process_thread::parameter_process_thread()
 {
     node=std::make_shared<parameter_process_node>("parameter_process_node");
+
+    parameter_client_state = 0;
 }
 
 void parameter_process_thread::working()
@@ -15,15 +17,16 @@ void parameter_process_thread::working()
 
 void parameter_process_thread::set_rov_behaviour(int msg)
 {
-    // qDebug()<<"set_rov_behaviour"<<msg;
-    node->node_set_rov_behaviour(msg);
+    if (parameter_client_state != 0)
+    {
+        node->node_set_rov_behaviour(msg);
+    }
 }
 
 int parameter_process_thread::connect_server()
 {
-    int ret = 0;
-    ret = node->node_connect_server();
-    return ret;
+    parameter_client_state = node->node_connect_server();
+    return parameter_client_state;
 }
 
 void parameter_process_node::led_turn_on()

@@ -14,21 +14,24 @@ camera_qweight::camera_qweight(QWidget *parent)
 
 void camera_qweight::camera_open()
 {
-    if(my_camera_thread->camera_source != "PC_Camera"){
-        if(isPingable(my_camera_thread->camera_source.toStdString().c_str())){
-            my_camera_thread->play();
-            my_camera_thread->start();
-        }
-        else
-        {
-            qDebug()<<"no camera :"<<my_camera_thread->camera_source;
-        }
+    // if(my_camera_thread->camera_source != "PC_Camera"){
+        // if(isPingable(my_camera_thread->camera_source.toStdString().c_str())){
+            // my_camera_thread->play();
+            // my_camera_thread->start();
+        // }
+        // else
+        // {
+        //     qDebug()<<"no camera :"<<my_camera_thread->camera_source;
+        // }
         
-    }
-    else{
-        my_camera_thread->play();
-        my_camera_thread->start();
-    }
+    // }
+    // else{
+    //     my_camera_thread->play();
+    //     my_camera_thread->start();
+    // }
+    my_camera_thread->play();
+    my_camera_thread->start();
+
 }
 
 void camera_qweight::camera_close()

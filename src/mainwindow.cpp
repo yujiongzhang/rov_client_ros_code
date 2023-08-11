@@ -1,5 +1,6 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
+#include <QMessageBox>
 
 
 MainWindow::MainWindow(QWidget *parent)
@@ -43,7 +44,7 @@ MainWindow::MainWindow(QWidget *parent)
     connect(statusReceiveNode->node->connectqt,&status_receive_node_connect_qt::s_tracks,this,&MainWindow::update_tracks);
     connect(statusReceiveNode->node->connectqt,&status_receive_node_connect_qt::s_cabin_state,this,&MainWindow::update_cabin_state);
 
-    // connect(joyNode->node->connectqt,          &joy_node_connect_qt::s_rov_behaviour,          this, &MainWindow::update_test);
+
     connect(joyNode->node->connectqt,&joy_node_connect_qt::s_rov_behaviour,parameterProcessNode,&parameter_process_thread::set_rov_behaviour);
 
 
@@ -65,11 +66,18 @@ void MainWindow::uiInit()
 
     ui->camera1->set_default_image(QImage(":/picture/camera1.jpg"));
     ui->camera2->set_default_image(QImage(":/picture/camera3.jpg"));
+    ui->sonar->set_default_picture(QImage(":/picture/sonar.png"));
+
+    //---模型形态---------
+    ui->openGLWidget->set_viewat(QVector3D(0.0f, -1.3f, 0.3f), QVector3D(0.0f,0.0f,0.0f), QVector3D(0.0f,0.0f,1.0f));
+    ui->openGLWidget_yaw->set_viewat(QVector3D(0.0f, 0.0f, 1.5f), QVector3D(0.0f,0.0f,0.0f), QVector3D(0.0f,1.0f,0.0f));
 
     ui->tubiao_label->setPixmap(QPixmap::fromImage(QImage(":/picture/tubiao.png")).scaled(ui->tubiao_label->size(), Qt::KeepAspectRatio, Qt::SmoothTransformation));
 
-    ui->camera1->set_camera_source("PC_Camera");
+    ui->camera1->set_camera_source("rtsp://192.168.0.168:8554/0");
     ui->camera2->set_camera_source("rtsp://192.168.0.88:554/1");
+
+
 }
 
 void MainWindow::update_test(int msg)
@@ -82,6 +90,9 @@ void MainWindow::update_imu(ImuPCStruct msg)
     ui->yaw_label->setText(QString::number(msg.yaw));
     ui->pitch_label->setText(QString::number(msg.pitch));
     ui->rol_label->setText(QString::number(msg.roll));
+    //调整ROV姿态
+    ui->openGLWidget->drawShape(msg.pitch, msg.roll, 0);
+    ui->openGLWidget_yaw->drawShape(0, 0, msg.yaw);
 }
 
 void MainWindow::update_thrusters(ThrustersClientStruct msg)
@@ -144,6 +155,18 @@ void MainWindow::on_camera2_off_pushButton_clicked()
 {
     ui->camera2->camera_close();
 }
+void MainWindow::on_sonar_on_pushButton_clicked()
+{
+    ui->sonar->start_sonar();
+    ui->sonar_on_pushButton->setEnabled(false);
+    ui->sonar_off_pushButton->setEnabled(true);
+}
+void MainWindow::on_sonar_off_pushButton_clicked()
+{
+    ui->sonar->stop_sonar();
+    ui->sonar_on_pushButton->setEnabled(true);
+    ui->sonar_off_pushButton->setEnabled(false);
+}
 //-------------camera --------------------------------------
 //------------------------------------------------------------
 //-------------push Button-----------------------------------
@@ -151,6 +174,10 @@ void MainWindow::on_connect_server_pushButton_clicked()
 {
     int ret = 0;
     ret = parameterProcessNode->connect_server();
+    if(ret == 1)
+    {
+        QMessageBox::information(this,"参数服务器连接成功","参数服务器连接成功");
+    }
 }
 
 void MainWindow::on_led_on_pushButton_clicked()
