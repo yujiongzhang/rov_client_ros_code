@@ -141,7 +141,10 @@ void MainWindow::on_led_off_pushButton_clicked()
 //-------------camera --------------------------------------
 void MainWindow::on_camera_on_pushButton_clicked()
 {
-    ui->camera1->camera_open();
+    if(isPingable("192.168.0.168"))
+    {
+        ui->camera1->camera_open();
+    }
 }
 void MainWindow::on_camera_off_pushButton_clicked()
 {
@@ -149,7 +152,10 @@ void MainWindow::on_camera_off_pushButton_clicked()
 }
 void MainWindow::on_camera2_on_pushButton_clicked()
 {
-    ui->camera2->camera_open();
+    if(isPingable("192.168.0.88"))
+    {
+        ui->camera2->camera_open();
+    }
 }
 void MainWindow::on_camera2_off_pushButton_clicked()
 {
