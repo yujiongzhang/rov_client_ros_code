@@ -75,7 +75,7 @@ void hms2000_thread::calDelta()
 //从bin文件中读取设置好的颜色表
 void hms2000_thread::InitColortable()
 {
-    QFile file(":/config/config/ctable.bin");
+    QFile file(":/config/ctable.bin");
     file.open(QIODevice::ReadOnly);
     uchar data[768];
 

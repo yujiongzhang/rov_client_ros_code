@@ -9,5 +9,6 @@
         <file>module/rovmini.stl</file>
         <file>module/stl.frag</file>
         <file>module/stl.vert</file>
+        <file>config/ctable.bin</file>
     </qresource>
 </RCC>
