@@ -51,6 +51,8 @@ private slots:
     void on_connect_server_pushButton_clicked();
     void on_led_on_pushButton_clicked();
     void on_led_off_pushButton_clicked();
+    void on_servo_angle_add_pushButton_clicked();
+    void on_servo_angle_sub_pushButton_clicked();
 
     void on_camera_on_pushButton_clicked();
     void on_camera_off_pushButton_clicked();
@@ -60,5 +62,14 @@ private slots:
     void on_sonar_off_pushButton_clicked();
 
     void on_brightness_slider_sliderReleased();
+    void on_servo_angle_slider_sliderReleased();
+
+    //control set
+    void on_target_dm_pushButton_clicked();
+    void on_depth_hold_on_pushButton_clicked();
+    void on_depth_hold_off_pushButton_clicked();
+    void on_target_am_pushButton_clicked();
+    void on_attitude_hold_on_pushButton_clicked();
+    void on_attitude_hold_off_pushButton_clicked();
 };
 #endif // MAINWINDOW_H

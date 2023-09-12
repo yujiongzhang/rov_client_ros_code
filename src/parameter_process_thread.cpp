@@ -29,11 +29,11 @@ int parameter_process_thread::connect_server()
     return parameter_client_state;
 }
 
-void parameter_process_node::led_turn_on()
+void parameter_process_node::led_turn_on(int _brightness)
 {
     // 修改节点的参数值
     std::vector<rclcpp::Parameter> params;
-    params.push_back(rclcpp::Parameter("led_brightness", 50));
+    params.push_back(rclcpp::Parameter("led_brightness", _brightness));
     auto result = parameter_client->set_parameters_atomically(params);
     if(result.successful)
     {
@@ -50,6 +50,22 @@ void parameter_process_node::led_turn_off()
     // 修改节点的参数值
     std::vector<rclcpp::Parameter> params;
     params.push_back(rclcpp::Parameter("led_brightness", 0));
+    auto result = parameter_client->set_parameters_atomically(params);
+    if(result.successful)
+    {
+        RCLCPP_INFO(this->get_logger(), "Parameter set successfully");
+    }
+    else
+    {
+        RCLCPP_ERROR(this->get_logger(), "Failed to set parameter");
+    }
+}
+
+void parameter_process_node::servo_angle_set(int _angle)
+{
+    // 修改节点的参数值
+    std::vector<rclcpp::Parameter> params;
+    params.push_back(rclcpp::Parameter("servo_angle", _angle));
     auto result = parameter_client->set_parameters_atomically(params);
     if(result.successful)
     {
@@ -166,6 +182,36 @@ void parameter_process_node::node_set_rov_behaviour(int msg)
         break;
     default:
         break;
+    }
+}
+
+void parameter_process_node::target_dm_set(float _dm_value)
+{
+    std::vector<rclcpp::Parameter> params;
+    params.push_back(rclcpp::Parameter("target_dm", _dm_value));
+    auto result = parameter_client_controller->set_parameters_atomically(params);
+    if(result.successful)
+    {
+        std::cout << "set target_dm: "<< _dm_value << std::endl;
+    }
+    else
+    {
+        RCLCPP_ERROR(this->get_logger(), "Failed to set parameter");
+    }
+}
+
+void parameter_process_node::target_am_set(float _am_value)
+{
+    std::vector<rclcpp::Parameter> params;
+    params.push_back(rclcpp::Parameter("target_am", _am_value));
+    auto result = parameter_client_controller->set_parameters_atomically(params);
+    if(result.successful)
+    {
+        std::cout << "set target_am: "<< _am_value << std::endl;
+    }
+    else
+    {
+        RCLCPP_ERROR(this->get_logger(), "Failed to set parameter");
     }
 }
 

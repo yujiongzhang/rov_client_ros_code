@@ -30,11 +30,17 @@ public:
 
     }
 
-    void led_turn_on();
+    void led_turn_on(int _brightness);
     void led_turn_off();
+    void servo_angle_set(int _angle);
     void node_set_rov_behaviour(int msg);
+
+    void target_am_set(float _am_value);
+    void target_dm_set(float _dm_value);
+
     int node_connect_server();
 
+    
 };
 
 

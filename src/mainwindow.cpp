@@ -63,6 +63,9 @@ MainWindow::~MainWindow()
 void MainWindow::uiInit()
 {
     ui->brightness_label->setText("0");
+    ui->servo_angle_label->setText(QString::number(ui->servo_angle_slider->value()));
+    ui->target_am_lineEdit->setText("0");
+    ui->target_dm_lineEdit->setText("0");
 
     ui->camera1->set_default_image(QImage(":/picture/camera1.jpg"));
     ui->camera2->set_default_image(QImage(":/picture/camera3.jpg"));
@@ -129,15 +132,8 @@ void MainWindow::update_altimeter(float msg)
     ui->height_label->setText(QString::number(msg));
 }
 
-void MainWindow::on_led_off_pushButton_clicked()
-{
-    led_on = 0;
-    ui->brightness_label->setText("0");
-    parameterProcessNode->node->led_turn_off();
-    ui->led_on_pushButton->setEnabled(true);
-    ui->led_off_pushButton->setEnabled(false);
-}
-//--------------------------------------------------------
+
+//----------------------------------------------------------
 //-------------camera --------------------------------------
 void MainWindow::on_camera_on_pushButton_clicked()
 {
@@ -190,17 +186,75 @@ void MainWindow::on_led_on_pushButton_clicked()
 {
     led_on = 1;
     ui->brightness_label->setText(QString::number(ui->brightness_slider->value()));
-    parameterProcessNode->node->led_turn_on();
+    parameterProcessNode->node->led_turn_on(ui->brightness_slider->value());
     ui->led_on_pushButton->setEnabled(false);
     ui->led_off_pushButton->setEnabled(true);
 }
 
+void MainWindow::on_led_off_pushButton_clicked()
+{
+    led_on = 0;
+    ui->brightness_label->setText("0");
+    parameterProcessNode->node->led_turn_off();
+    ui->led_on_pushButton->setEnabled(true);
+    ui->led_off_pushButton->setEnabled(false);
+}
+
+void MainWindow::on_servo_angle_add_pushButton_clicked()
+{
+    ui->servo_angle_slider->setValue(ui->servo_angle_slider->value()+1);
+    ui->servo_angle_label->setText(QString::number(ui->servo_angle_slider->value()));
+    parameterProcessNode->node->servo_angle_set(ui->servo_angle_slider->value());
+}
+
+void MainWindow::on_servo_angle_sub_pushButton_clicked()
+{
+    ui->servo_angle_slider->setValue(ui->servo_angle_slider->value()-1);
+    ui->servo_angle_label->setText(QString::number(ui->servo_angle_slider->value()));
+    parameterProcessNode->node->servo_angle_set(ui->servo_angle_slider->value());
+}
 
 void MainWindow::on_brightness_slider_sliderReleased()
 {
     if(led_on){
         ui->brightness_label->setText(QString::number(ui->brightness_slider->value()));
+        parameterProcessNode->node->led_turn_on(ui->brightness_slider->value());
     }
 }
 
+//-------------------------------------------------------------------------------------
+//--------ROV CONTROL------------------------------------------------------------------
+void MainWindow::on_servo_angle_slider_sliderReleased()
+{
+    ui->servo_angle_label->setText(QString::number(ui->servo_angle_slider->value()));
+    parameterProcessNode->node->servo_angle_set(ui->servo_angle_slider->value());
+}
 
+void MainWindow::on_target_dm_pushButton_clicked()
+{
+    parameterProcessNode->node->target_dm_set(ui->target_dm_lineEdit->text().toFloat());
+}
+
+void MainWindow::on_depth_hold_on_pushButton_clicked()
+{
+}
+
+void MainWindow::on_depth_hold_off_pushButton_clicked()
+{
+}
+
+void MainWindow::on_target_am_pushButton_clicked()
+{
+    parameterProcessNode->node->target_am_set(ui->target_am_lineEdit->text().toFloat());
+}
+
+void MainWindow::on_attitude_hold_on_pushButton_clicked()
+{
+}
+
+void MainWindow::on_attitude_hold_off_pushButton_clicked()
+{
+}
+
+//--------ROV CONTROL------------------------------------------------------------------
+//-------------------------------------------------------------------------------------
