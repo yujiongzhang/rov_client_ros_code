@@ -84,6 +84,8 @@ camera_thread::camera_thread(QObject *parent): QThread(parent)
     isPlay = false;
     stopped = false;
     camera_source = "PC_Camera";
+
+
 }
 
 void camera_thread::run()
@@ -96,8 +98,11 @@ void camera_thread::run()
     else{
         capture.open(camera_source.toStdString());
     }
-    
 
+    std::string node_name = "rtsp_"+ camera_source.toStdString();
+    cameraNode = rclcpp::Node::make_shared(node_name);
+    std::string camera_topic_name = node_name+"_image";
+    auto cameraPublisher = cameraNode->create_publisher<sensor_msgs::msg::Image>(camera_topic_name, 20);
 
     if (!capture.isOpened()) //判断相机是否打开
     {
@@ -112,9 +117,23 @@ void camera_thread::run()
         }
         capture.read(frame);
 //        cv::imshow("读取视频", frame);
+
+        //转化为ros中的image格式，用于发布
+        sensor_msgs::msg::Image::SharedPtr msg = std::make_shared<sensor_msgs::msg::Image>();
+        msg->height = frame.rows;
+        msg->width = frame.cols;
+        msg->encoding = "bgr8"; // 使用BGR格式
+        msg->step = static_cast<sensor_msgs::msg::Image::_step_type>(frame.cols * frame.elemSize());
+        size_t size = frame.cols * frame.rows * frame.elemSize();
+        msg->data.resize(size);
+        memcpy(&msg->data[0], frame.data, size);
+        cameraPublisher->publish(*msg); // 发布图像消息
+
+        //转化为qimage格式，用于ui显示
         cv::cvtColor(frame, frame, cv::COLOR_BGR2BGRA);
         QImage qimage = cvMat2QImage(frame);
         emit receiveImage(qimage);
+
     }
 //    //线程结束后释放资源
     stopped = false;

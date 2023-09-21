@@ -1,12 +1,15 @@
 #ifndef CAMERA_QWEIGHT_H
 #define CAMERA_QWEIGHT_H
 
+
 #include <QWidget>
 #include <QThread>
 #include "qpainter.h"
 #include <opencv2/opencv.hpp>
 #include "isPingable.h"
 
+#include <rclcpp/rclcpp.hpp>
+#include <sensor_msgs/msg/image.hpp>
 
 QImage cvMat2QImage(const cv::Mat& mat);
 
@@ -26,6 +29,8 @@ private:
     int deviceID;
     cv::VideoCapture capture;
     cv::Mat frame;
+
+    std::shared_ptr<rclcpp::Node> cameraNode;
 
 signals:
     void receiveImage(QImage);
