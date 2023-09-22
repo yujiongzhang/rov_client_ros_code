@@ -85,11 +85,12 @@ camera_thread::camera_thread(QObject *parent): QThread(parent)
     stopped = false;
     camera_source = "PC_Camera";
 
-
 }
 
 void camera_thread::run()
 {
+
+    qDebug()<<"camera_thread run";
     if (camera_source == "PC_Camera")
     {
         deviceID = 0;
@@ -99,7 +100,7 @@ void camera_thread::run()
         capture.open(camera_source.toStdString());
     }
 
-    std::string node_name = "rtsp_"+ camera_source.toStdString();
+    std::string node_name = "rtsp_"+ camera_source.toStdString().substr(17,2);
     cameraNode = rclcpp::Node::make_shared(node_name);
     std::string camera_topic_name = node_name+"_image";
     auto cameraPublisher = cameraNode->create_publisher<sensor_msgs::msg::Image>(camera_topic_name, 20);

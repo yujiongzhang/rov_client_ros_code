@@ -12,6 +12,8 @@
 #include <QUdpSocket>
 #include "definition.h"
 
+#include <rclcpp/rclcpp.hpp>
+#include <sensor_msgs/msg/laser_scan.hpp>
 
 class hms2000_thread : public QThread
 {
@@ -41,6 +43,8 @@ protected:
     void run();
 
 private:
+    std::shared_ptr<rclcpp::Node> sonarNode;
+
     volatile bool isPlay;           //播放视频标志位
     volatile bool stopped;
     int deviceID;

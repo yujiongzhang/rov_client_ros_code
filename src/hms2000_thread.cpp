@@ -15,7 +15,6 @@ hms2000_thread::hms2000_thread(QObject *parent): QThread(parent)
     calDelta();
     InitColortable();
 
-
     //绘制颜色表
     DrawColortable(m_pBits);
 
@@ -33,6 +32,7 @@ hms2000_thread::hms2000_thread(QObject *parent): QThread(parent)
 
     cmdTimer = new QTimer;
     cmdTimer -> start(100); //定时发送命令包
+
 }
 
 void hms2000_thread::param_init()
@@ -289,9 +289,10 @@ void hms2000_thread::stop_sonar()
 
 void hms2000_thread::run()
 {
-
     qDebug()<<"hms2000_thread run";
-
+    sonarNode = rclcpp::Node::make_shared("hms2000_sonar");
+    auto sonarPublisher = sonarNode->create_publisher<sensor_msgs::msg::LaserScan>("hms2000_sonar_laserScan", 10);
+    
 //    connect(cmdTimer, &QTimer::timeout,this,[=]()
 //    {
 //        if(!stopped){
