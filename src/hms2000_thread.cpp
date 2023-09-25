@@ -33,6 +33,8 @@ hms2000_thread::hms2000_thread(QObject *parent): QThread(parent)
     cmdTimer = new QTimer;
     cmdTimer -> start(100); //定时发送命令包
 
+
+
 }
 
 void hms2000_thread::param_init()
@@ -292,6 +294,8 @@ void hms2000_thread::run()
     qDebug()<<"hms2000_thread run";
     sonarNode = rclcpp::Node::make_shared("hms2000_sonar");
     auto sonarPublisher = sonarNode->create_publisher<sensor_msgs::msg::LaserScan>("hms2000_sonar_laserScan", 10);
+    sonarNode -> declare_parameter<bool>("isPublishSonar",false);
+    bool isPublishSonar = false;
     
 //    connect(cmdTimer, &QTimer::timeout,this,[=]()
 //    {
@@ -309,6 +313,8 @@ void hms2000_thread::run()
             isPlay = false;
             continue;
         }
+
+        sonarNode -> get_parameter("isPublishSonar", isPublishSonar);
 
         while (q_sonardatahms2000_num)
         {

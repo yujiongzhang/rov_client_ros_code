@@ -15,9 +15,7 @@ MainWindow::MainWindow(QWidget *parent)
 
     ui->setupUi(this);
 
-    int argc=0;
-    char **argv=NULL;
-    rclcpp::init(argc, argv);
+
 
     // commNode=new rclcomm_class();
     // commNode -> start();
