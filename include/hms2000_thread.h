@@ -15,6 +15,8 @@
 #include <rclcpp/rclcpp.hpp>
 #include <sensor_msgs/msg/laser_scan.hpp>
 
+#define PCOUNT 10
+
 class hms2000_thread : public QThread
 {
     Q_OBJECT
@@ -38,6 +40,9 @@ public:
 
     void start_sonar();
     void stop_sonar();
+
+    //从声呐中获取距离
+    float get_distence(uchar *buf, int range);
 
 protected:
     void run();

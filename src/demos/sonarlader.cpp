@@ -42,7 +42,7 @@ void microros_task(void *param)
 
   rclc_executor_init(&executor, &support.context, 1, &allocator);                             // 创建执行器
   pub_msg.header.frame_id = micro_ros_string_utilities_set(pub_msg.header.frame_id, "laser"); // 初始化消息内容
-  pub_msg.angle_increment = 1.0 / 180 * PI;
+  pub_msg.angle_increment = 2*PI/294;
   pub_msg.range_min = 0.05;
   pub_msg.range_max = 5.0;
 

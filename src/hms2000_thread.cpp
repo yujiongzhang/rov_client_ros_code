@@ -224,6 +224,7 @@ void hms2000_thread::process_receive_data()
 
 //HMS2000图像绘制  角度angle测得的一组数据buf 一组数据长度len=300
 //步距为4，需要绘制的角度宽度为step=1.224° 实测数据每2.448°得到一组 由于前后两组平均后最后的步距角为1.224°
+//步距为2，需要绘制的角度宽度为step=0.612° 实测数据每1.224°得到一组 由于前后两组平均后最后的步距角为0.612°
 //步距为1，需要绘制的角度宽度为step=0.306° 实测数据每0.612°得到一组 由于前后两组平均后最后的步距角为0.306°
 void hms2000_thread::Scan(double angle, uchar *buf, uint len, double step)
 {
@@ -289,13 +290,32 @@ void hms2000_thread::stop_sonar()
     m_udp->writeDatagram(sendbytearray,QHostAddress(connectAdd),connectPort); //发送
 }
 
+float hms2000_thread::get_distence(uchar *buf, int range)
+{
+    float distance = 0;
+    for(int i = 15; i<300; i++)
+    {
+        if (buf[i] >= 30 )//认为返回值大于30为障碍物
+        {
+            distance = i * range/300;
+            return distance;
+        }
+    }
+    return 30.0f;//返回一个超出量程的值
+}
+
 void hms2000_thread::run()
 {
     qDebug()<<"hms2000_thread run";
+
     sonarNode = rclcpp::Node::make_shared("hms2000_sonar");
     auto sonarPublisher = sonarNode->create_publisher<sensor_msgs::msg::LaserScan>("hms2000_sonar_laserScan", 10);
     sonarNode -> declare_parameter<bool>("isPublishSonar",false);
     bool isPublishSonar = false;
+    float angle_min = 0;
+    float angle_max = 0;
+    float ranges_buf[10];
+    int ranges_buf_index = 0;
     
 //    connect(cmdTimer, &QTimer::timeout,this,[=]()
 //    {
@@ -314,6 +334,7 @@ void hms2000_thread::run()
             continue;
         }
 
+        //获取参数
         sonarNode -> get_parameter("isPublishSonar", isPublishSonar);
 
         while (q_sonardatahms2000_num)
@@ -345,6 +366,41 @@ void hms2000_thread::run()
             m_angle = m_nAngle*360.0/m_nMaxAngle;
             Scan(m_angle,hms_bufnow,sonardatahms2000_out.data_len,m_scan_step);
 
+            //
+            if (range_buf_index == 9)
+            {
+                range_buf_index = 0;
+                angle_max = m_angle;
+                sensor_msgs::msg::LaserScan::SharedPtr sonarMsg = std::make_shared<sensor_msgs::msg::LaserScan>();
+
+                sonarMsg.header.frame_id = micro_ros_string_utilities_set(pub_msg.header.frame_id, "laser"); // 初始化消息内容
+                sonarMsg.angle_increment = 2*PI/294;
+                sonarMsg.range_min = 0.05;
+                sonarMsg.range_max = 5.0;
+
+                sonarMsg.angle_min = angle_min;       // 结束角度
+                sonarMsg.angle_max = angle_max; // 结束角度
+
+                int64_t current_time = rmw_uros_epoch_millis();
+                sonarMsg.scan_time = float(current_time - start_scan_time) * 1e-3;
+                sonarMsg.time_increment = sonarMsg.scan_time / PCOUNT;
+                sonarMsg.header.stamp.sec = current_time * 1e-3;
+                sonarMsg.header.stamp.nanosec = current_time - pub_msg.header.stamp.sec * 1000;
+                sonarMsg.ranges.data = ranges_buf;
+                sonarMsg.ranges.capacity = PCOUNT;
+                sonarMsg.ranges.size = PCOUNT;
+
+            }
+            else if (range_buf_index == 0)
+            {
+                angle_min = m_angle;
+            }
+            
+            
+            ranges_buf[range_buf_index] = get_distence(hms_bufnow,3);
+            range_buf_index++;
+//-------------------------------------------------------------------------
+
             if(hms_bufnow == hms_buf1)
             {
                 hms_bufnow = hms_buf2;
@@ -355,6 +411,8 @@ void hms2000_thread::run()
             }
             m_nLastAngle = m_nAngle;
             emit receiveImage(*image1);
+
+
         }
 
 
