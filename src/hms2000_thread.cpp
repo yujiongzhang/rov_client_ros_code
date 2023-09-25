@@ -371,6 +371,8 @@ void hms2000_thread::run()
             {
                 range_buf_index = 0;
                 angle_max = m_angle;
+
+
                 sensor_msgs::msg::LaserScan::SharedPtr sonarMsg = std::make_shared<sensor_msgs::msg::LaserScan>();
 
                 sonarMsg.header.frame_id = micro_ros_string_utilities_set(pub_msg.header.frame_id, "laser"); // 初始化消息内容
@@ -391,11 +393,11 @@ void hms2000_thread::run()
                 sonarMsg.ranges.size = PCOUNT;
 
             }
-            else if (range_buf_index == 0)
+            
+            if (range_buf_index == 0)
             {
                 angle_min = m_angle;
             }
-            
             
             ranges_buf[range_buf_index] = get_distence(hms_bufnow,3);
             range_buf_index++;
