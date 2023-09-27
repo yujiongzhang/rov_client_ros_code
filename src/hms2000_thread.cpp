@@ -315,7 +315,9 @@ void hms2000_thread::run()
     float angle_min = 0;
     float angle_max = 0;
     float ranges_buf[10];
-    int ranges_buf_index = 0;
+    int range_buf_index = 0;
+
+    auto start_scan_time = sonarNode -> get_clock() ->now();
     
 //    connect(cmdTimer, &QTimer::timeout,this,[=]()
 //    {
@@ -334,8 +336,12 @@ void hms2000_thread::run()
             continue;
         }
 
+        rclcpp::spin_some(sonarNode);
         //获取参数
         sonarNode -> get_parameter("isPublishSonar", isPublishSonar);
+        // if (isPublishSonar){
+        //     std::cout << "isPublishSonar is true" << std::endl;
+        // }
 
         while (q_sonardatahms2000_num)
         {
@@ -366,43 +372,55 @@ void hms2000_thread::run()
             m_angle = m_nAngle*360.0/m_nMaxAngle;
             Scan(m_angle,hms_bufnow,sonardatahms2000_out.data_len,m_scan_step);
 
-            //
-            if (range_buf_index == 9)
+            if (isPublishSonar)
             {
-                range_buf_index = 0;
-                angle_max = m_angle;
+                if (range_buf_index == 10)
+                {
+                    range_buf_index = 0;
+                    angle_max = m_angle;
 
+                    //Encapsulated sonar data
+                    sensor_msgs::msg::LaserScan::SharedPtr sonarMsg = std::make_shared<sensor_msgs::msg::LaserScan>();
 
-                sensor_msgs::msg::LaserScan::SharedPtr sonarMsg = std::make_shared<sensor_msgs::msg::LaserScan>();
+                    sonarMsg->header.frame_id = "laser"; // 初始化消息内容
+                    sonarMsg->angle_increment = 2*PI/294;
+                    sonarMsg->range_min = 0.05;
+                    sonarMsg->range_max = 5.0;
 
-                sonarMsg.header.frame_id = micro_ros_string_utilities_set(pub_msg.header.frame_id, "laser"); // 初始化消息内容
-                sonarMsg.angle_increment = 2*PI/294;
-                sonarMsg.range_min = 0.05;
-                sonarMsg.range_max = 5.0;
+                    sonarMsg->angle_min = angle_min;       // 结束角度
+                    sonarMsg->angle_max = angle_max; // 结束角度
 
-                sonarMsg.angle_min = angle_min;       // 结束角度
-                sonarMsg.angle_max = angle_max; // 结束角度
+                    sonarMsg->header.stamp = sonarNode -> get_clock() ->now();
 
-                int64_t current_time = rmw_uros_epoch_millis();
-                sonarMsg.scan_time = float(current_time - start_scan_time) * 1e-3;
-                sonarMsg.time_increment = sonarMsg.scan_time / PCOUNT;
-                sonarMsg.header.stamp.sec = current_time * 1e-3;
-                sonarMsg.header.stamp.nanosec = current_time - pub_msg.header.stamp.sec * 1000;
-                sonarMsg.ranges.data = ranges_buf;
-                sonarMsg.ranges.capacity = PCOUNT;
-                sonarMsg.ranges.size = PCOUNT;
+                    sonarMsg->scan_time = float(sonarMsg->header.stamp.sec - start_scan_time.seconds());
+                    sonarMsg->time_increment = sonarMsg->scan_time / PCOUNT;
+                    
+                    sonarMsg->ranges.resize(PCOUNT);
+                    for (int j = 0; j < 10; j++)
+                    {
+                        sonarMsg->ranges[j] = ranges_buf[j];
+                    }
+                    
+                    // sonarMsg->ranges.data = ranges_buf;
+                    // sonarMsg->ranges.capacity = PCOUNT;
+                    // sonarMsg->ranges.size = PCOUNT;
 
-            }
-            
-            if (range_buf_index == 0)
-            {
-                angle_min = m_angle;
-            }
-            
-            ranges_buf[range_buf_index] = get_distence(hms_bufnow,3);
-            range_buf_index++;
+                    sonarPublisher -> publish(*sonarMsg);
+
+                }
+                
+                if (range_buf_index == 0)
+                {
+                    angle_min = m_angle;
+                    start_scan_time = sonarNode -> get_clock() ->now();
+                }
+                
+                ranges_buf[range_buf_index] = get_distence(hms_bufnow,3);
+                range_buf_index++;
 //-------------------------------------------------------------------------
-
+            }
+            
+            
             if(hms_bufnow == hms_buf1)
             {
                 hms_bufnow = hms_buf2;

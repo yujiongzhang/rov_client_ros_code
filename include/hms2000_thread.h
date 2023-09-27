@@ -16,6 +16,7 @@
 #include <sensor_msgs/msg/laser_scan.hpp>
 
 #define PCOUNT 10
+#define PI 3.14159265
 
 class hms2000_thread : public QThread
 {
