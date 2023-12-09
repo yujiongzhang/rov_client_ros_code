@@ -3,12 +3,13 @@ project(ros2_qt_demo  LANGUAGES CXX)
 
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
 
+set(CMAKE_AUTOUIC ON)
+set(CMAKE_AUTOMOC ON)
+set(CMAKE_AUTORCC ON)
+
 set(CMAKE_CXX_STANDARD 14)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-if(CMAKE_COMPILER_IS_GNUCXX OR CMAKE_CXX_COMPILER_ID MATCHES "Clang")
-  add_compile_options(-Wall -Wextra -Wpedantic)
-endif()
 
 # find dependencies
 find_package(ament_cmake REQUIRED)
@@ -25,16 +26,17 @@ find_package(OpenCV REQUIRED)
 
 find_package(rov_interfaces REQUIRED)
 
-# uncomment the following section in order to fill in
-# further dependencies manually.
-# find_package(<dependency> REQUIRED)
+
+#由于采用set(CMAKE_AUTOUIC ON)的方式处理ui文件，编译时会报错找不到ui文件。
+#需要将ui文件夹加入AUTOUIC的搜索目录，这样AUTOUIC处理时才能找到ui文件。
+set(CMAKE_AUTOUIC_SEARCH_PATHS ${CMAKE_SOURCE_DIR}/ui)
+
 file(GLOB PRO_SOURCE_DIR RELATIVE ${CMAKE_SOURCE_DIR} FOLLOW_SYMLINKS src/*.cpp)
 file(GLOB PRO_UI_DIR RELATIVE ${CMAKE_SOURCE_DIR} FOLLOW_SYMLINKS ui/*.ui)
 file(GLOB PRO_INCLUDE_DIR RELATIVE ${CMAKE_SOURCE_DIR} FOLLOW_SYMLINKS include/*.h *.hpp)
 file(GLOB PRO_RESOURCE_DIR RELATIVE ${CMAKE_SOURCE_DIR} FOLLOW_SYMLINKS resource/*.qrc)
-qt5_wrap_ui(QT_UI_HPP ${PRO_UI_DIR})
-qt5_wrap_cpp(QT_MOC_HPP ${PRO_INCLUDE_DIR})
-qt5_add_resources(QT_RESOUCE_HPP ${PRO_RESOURCE_DIR})
+
+
 message(${CMAKE_CURRENT_BINARY_DIR})
 include_directories(
 	include/
@@ -47,10 +49,10 @@ add_executable(${PROJECT_NAME}
     ${PRO_INCLUDE_DIR}
     ${PRO_UI_DIR}
     ${PRO_RESOURCE_DIR}
-    ${QT_UI_HPP}
-    ${QT_MOC_HPP}
-    ${QT_RESOUCE_HPP}
+
   )
+
+  
 ament_target_dependencies(${PROJECT_NAME} rclcpp Boost std_msgs sensor_msgs geometry_msgs rov_interfaces tf2_ros rcl_interfaces)
 target_link_libraries(${PROJECT_NAME} Qt5::Widgets Qt5::Network ${OpenCV_LIBS})
 

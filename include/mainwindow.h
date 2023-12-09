@@ -2,7 +2,6 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
-#include "rclcomm_class.h"
 #include "joy_thread.h"
 #include "status_receive_thread.h"
 #include "parameter_process_thread.h"
@@ -21,7 +20,6 @@ public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
 
-    rclcomm_class *commNode;
     joy_thread *joyNode;
     status_receive_thread *statusReceiveNode;
     parameter_process_thread *parameterProcessNode;

@@ -17,8 +17,6 @@ MainWindow::MainWindow(QWidget *parent)
 
 
 
-    // commNode=new rclcomm_class();
-    // commNode -> start();
 
     joyNode = new joy_thread();
     statusReceiveNode = new status_receive_thread();

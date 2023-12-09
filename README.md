@@ -18,7 +18,7 @@ install | self defined message types
 
 ## HOW TO START
 ```
-source install\setup.bash
+source install/setup.bash
 mkdir build && cd build
 cmake ..
 make -j 8
